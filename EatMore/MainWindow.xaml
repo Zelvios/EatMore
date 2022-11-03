@@ -1,0 +1,196 @@
+﻿<Window x:Class="EatMore.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:emoji="clr-namespace:Emoji.Wpf;assembly=Emoji.Wpf"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:EatMore"
+        mc:Ignorable="d"
+        Title="Eat More - App" Height="600" Width="800"
+        ResizeMode="NoResize"
+        WindowStartupLocation="CenterScreen"
+        Icon="https://foodhub.scene7.com/is/image/woolworthsltdprod/2004-easy-pepperoni-pizza:Mobile-1300x1150">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="300"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition Height="0"/>
+            <RowDefinition/>
+            <RowDefinition Height="400"/>
+            <RowDefinition Height="40"/>
+        </Grid.RowDefinitions>
+
+        <emoji:TextBlock Text="🍕Eat More" Margin="10,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="24" FontWeight="Bold" FontFamily="Times New Roman" Height="38" />
+        <Button x:Name="pizzaButton" Content="Pizza" Grid.Column="0" Grid.Row="3" Margin="25,10,25,1" FontSize="18" Background="#FF67DBF1" Click="pizzaButton_Click" />
+        <Button x:Name="drik" Content="Drikke" Grid.Column="1" Grid.Row="3" Margin="25,10,25,1" FontSize="18" Background="#FF67DBF1" Click="drik_Click" />
+
+
+        <Rectangle Grid.Column="0" Grid.Row="4" Stroke="Black" Grid.ColumnSpan="3" Margin="0,1,0,1" />
+        <Rectangle Grid.Column="3" Grid.Row="0" Grid.RowSpan="5" Margin="-1,0,0,0" Stroke="Black" />
+
+        <!--Pizzabox, HUSK AT ADD: 
+            Visibility="Hidden"
+            -->
+        <StackPanel x:Name="pizzaBox" Visibility="Visible" Grid.Column="0" Grid.Row="4" Grid.ColumnSpan="3">
+            <Grid Height="400" Background="#bdbbbb" >
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="1*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="1*"/>
+                    <RowDefinition Height="50"/>
+                    <RowDefinition Height="1*"/>
+                    <RowDefinition Height="1*" />
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition Height="50"/>
+                </Grid.RowDefinitions>
+                <Image Source="pizza.jpg" Grid.Row="0" Grid.Column="0" Grid.RowSpan="2" Grid.ColumnSpan="3" Stretch="UniformToFill" />
+
+                <Rectangle Grid.ColumnSpan="3" Grid.RowSpan="2" Stroke="Black" />
+
+                <!--Top funktioner-->
+                <Label Content="Pizza" FontWeight="Bold" FontSize="20" Margin="0, 0, 100, 0" Grid.Row="0" VerticalAlignment="Center" Foreground="White" />
+
+
+                <!--PREpizz1-->
+                <Rectangle Grid.Column="0" Grid.Row="1" Stroke="Black" Margin="1,59,0,-2" Grid.RowSpan="6" Grid.ColumnSpan="3" />
+
+
+                <Grid Grid.Row="2" Grid.RowSpan="5" Grid.ColumnSpan="3" Background="Black" Margin="0,0,0,-40" >
+                    <ScrollViewer ScrollViewer.VerticalScrollBarVisibility="Hidden">
+                        <ItemsControl ItemsSource="{Binding Pizza}">
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <Button x:Name="ValgPizza" Background="#FFFFFFFF" HorizontalContentAlignment="Left" Margin="5" Click="Tilføj_Pizza">
+                                        <StackPanel Orientation="Vertical" >
+                                            <StackPanel Orientation="Horizontal">
+                                                <TextBlock Text="{Binding Path=Nummer}" Margin="3,0,3,0" FontSize="15" FontWeight="Bold"/>
+                                                <TextBlock Text="{Binding Path=Navn}" FontSize="15" FontWeight="Bold"/>
+                                            </StackPanel>
+                                            <StackPanel HorizontalAlignment="Left" Orientation="Horizontal" >
+                                                <ItemsControl ItemsSource="{Binding Path=Beskrivelse}"  >
+                                                    <ItemsControl.ItemsPanel>
+                                                        <ItemsPanelTemplate>
+                                                            <WrapPanel Orientation="Horizontal"/>
+                                                        </ItemsPanelTemplate>
+                                                    </ItemsControl.ItemsPanel>
+                                                    <ItemsControl.ItemTemplate>
+                                                        <DataTemplate>
+                                                            <TextBlock Text="{Binding}"/>
+                                                        </DataTemplate>
+                                                    </ItemsControl.ItemTemplate>
+                                                </ItemsControl>
+                                            </StackPanel>
+                                            <StackPanel Orientation="Horizontal" Margin="2">
+                                                <TextBlock Text="{Binding Path=Pris, StringFormat=N2}" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="0,0,3,0" FontSize="15"/>
+                                                <TextBlock Text="Kr." FontSize="15" />
+                                            </StackPanel>
+                                        </StackPanel>
+                                    </Button>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+                    </ScrollViewer>
+                </Grid>
+            </Grid>
+        </StackPanel>
+
+
+        <!-- DRIKKE PANEL-->
+        <StackPanel x:Name="drikBox" Visibility="Hidden" Grid.Column="0" Grid.Row="4" Grid.ColumnSpan="3">
+            <Grid Height="400" >
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="1*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="50"/>
+                    <RowDefinition Height="1*"/>
+                    <RowDefinition Height="1*"/>
+                    <RowDefinition Height="1*"/>
+                    <RowDefinition Height="1*"/>
+                    <RowDefinition Height="1*"/>
+                    <RowDefinition Height="1*"/>
+                </Grid.RowDefinitions>
+                <Label Content="Drik" FontSize="20" Margin="0, 0, 100, 0" Grid.Row="0" Grid.ColumnSpan="2" VerticalAlignment="Center" FontWeight="Bold"  />
+
+
+                <Label Content="0.5L Drikkevare" Grid.Row="2" Grid.ColumnSpan="2" Grid.Column="0" VerticalAlignment="Bottom" HorizontalContentAlignment="Center" FontWeight="Bold" FontSize="14" />
+                <ListBox Grid.Row="3" Grid.RowSpan="2" Grid.Column="0" Grid.ColumnSpan="2" ItemsSource="{Binding _LocalDrikHalv}" Margin="1" ScrollViewer.VerticalScrollBarVisibility="Hidden" HorizontalContentAlignment="Stretch">
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <Grid>
+                                <TextBlock Text="{Binding Navn}" MaxWidth="110" TextWrapping="Wrap" HorizontalAlignment="Left"/>
+                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0">
+                                    <TextBlock Text="{Binding Path=Pris}" HorizontalAlignment="Right" Margin="0 0 3 0" TextWrapping="Wrap" MaxWidth="20"/>
+                                    <TextBlock Text="Kr." HorizontalAlignment="Right"/>
+                                </StackPanel>
+                            </Grid>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
+
+                <Label Content="1.5L Drikkevare" Grid.Row="2" Grid.Column="2" Grid.ColumnSpan="2" VerticalAlignment="Bottom" HorizontalContentAlignment="Center" FontWeight="Bold" FontSize="14" />
+                <ListBox Grid.Row="3" Grid.RowSpan="2" Grid.Column="2" Grid.ColumnSpan="2" ItemsSource="{Binding _LocalDrik}" Margin="1" ScrollViewer.VerticalScrollBarVisibility="Hidden" HorizontalContentAlignment="Stretch">
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <Grid>
+                                <TextBlock Text="{Binding Navn}" MaxWidth="110" TextWrapping="Wrap" HorizontalAlignment="Left"/>
+                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0">
+                                    <TextBlock Text="{Binding Path=Pris}" HorizontalAlignment="Right" Margin="0 0 3 0" TextWrapping="Wrap" MaxWidth="20"/>
+                                    <TextBlock Text="Kr." HorizontalAlignment="Right"/>
+                                </StackPanel>
+                            </Grid>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
+
+                <Label Content="0.5L Andre Drikkevare" Grid.Row="2" Grid.Column="4"  Grid.ColumnSpan="2" VerticalAlignment="Bottom" HorizontalContentAlignment="Center" FontWeight="Bold" FontSize="14" />
+                <ListBox Grid.Row="3" Grid.RowSpan="2" Grid.Column="4" Grid.ColumnSpan="2" ItemsSource="{Binding _LocalDrikAndet}" Margin="1" ScrollViewer.VerticalScrollBarVisibility="Hidden" HorizontalContentAlignment="Stretch">
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <Grid>
+                                <TextBlock Text="{Binding Navn}" MaxWidth="110" TextWrapping="Wrap" HorizontalAlignment="Left"/>
+                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0">
+                                    <TextBlock Text="{Binding Path=Pris}" HorizontalAlignment="Right" Margin="0 0 3 0" TextWrapping="Wrap" MaxWidth="20"/>
+                                    <TextBlock Text="Kr." HorizontalAlignment="Right"/>
+                                </StackPanel>
+                            </Grid>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
+            </Grid>
+        </StackPanel>
+
+
+        <!-- Menu LISTE -->
+        <Grid Grid.Row="0" Grid.Column="3" Grid.RowSpan="5">
+            <ScrollViewer>
+                <ItemsControl ItemsSource="{Binding OrdeListe}">
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <Button>
+                                <StackPanel>
+                                    
+                                </StackPanel>
+                            </Button>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+            </ScrollViewer>
+        </Grid>
+    </Grid>
+</Window>
