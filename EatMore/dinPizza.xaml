@@ -71,12 +71,12 @@
                 </Grid.RowDefinitions>
 
 
-            <Button Content="Tilføj Pizza" Grid.Column="1" Grid.Row="2" Grid.ColumnSpan="2" Margin="20 0 20 20" />
+            <Button Content="Tilføj Pizza" Grid.Column="1" Grid.Row="2" Grid.ColumnSpan="2" Margin="20 0 20 20" Click="AddPizza" />
             <TextBlock Text="{Binding realpris, StringFormat=N2}" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2"  VerticalAlignment="Bottom" HorizontalAlignment="Center" Foreground="Black" Background="White"/>
               
 
                 
-                <Button Content="Anullere" Grid.Column="1" Grid.Row="4" Grid.ColumnSpan="2" VerticalAlignment="Bottom" Margin="30 0 30 0" Height="20" Click="addPiza" />
+                <Button Content="Anullere" Grid.Column="1" Grid.Row="4" Grid.ColumnSpan="2" VerticalAlignment="Bottom" Margin="30 0 30 0" Height="20" Click="FjernPizza" />
             </Grid>
         </Border>
 

@@ -9,13 +9,24 @@ using System.Dynamic;
 
 namespace EatMore
 {
-    public class Pizza
+    public class Pizza : INotifyPropertyChanged
     {
         public int ID { get; set; }
         public int Nummer { get; private set; }
         public string Navn { get; private set; }
         public ObservableCollection<Top> Top { get; private set; }
-        public double Pris { get; set; }
+        private double _Pris;
+
+        public double Pris
+        {
+            get { return _Pris; }
+            set
+            {
+                _Pris = value;
+                OnPropertyChanged("Pris");
+            }
+        }
+
         private int _Antal;
         public int Antal {
             get { return _Antal; }
@@ -23,6 +34,7 @@ namespace EatMore
             {
                 if (value < 0 || value > 11) { value = 0; }
                 _Antal = value;
+                OnPropertyChanged("Antal");
             }
         }
 
@@ -47,12 +59,13 @@ namespace EatMore
             this.Antal = Antal;
         }
 
-        public void CalcPrice()
+        public event PropertyChangedEventHandler PropertyChanged;
+        private void OnPropertyChanged(string PropertyNavn)
         {
-            foreach (var to in this.Top)
+            if (PropertyChanged != null)
             {
-                Pris += to.pris;
+                PropertyChanged(this, new PropertyChangedEventArgs(PropertyNavn));
             }
-        }       
+        }
     }
 }

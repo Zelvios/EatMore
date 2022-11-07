@@ -12,6 +12,8 @@ namespace EatMore
     {
         private double _realpris;
 
+       
+
         public double realpris
         {
             get { return _realpris; }
@@ -37,14 +39,7 @@ namespace EatMore
             }
         }
 
-        public event PropertyChangedEventHandler PropertyChanged;
-        private void OnPropertyChanged(string PropertyNavn)
-        {
-            if (PropertyChanged != null)
-            {
-                PropertyChanged(this, new PropertyChangedEventArgs(PropertyNavn));
-            }
-        }
+       
         
 
 
@@ -57,6 +52,9 @@ namespace EatMore
         }
 
         public ObservableCollection<Top> top { get; private set; }
+
+        
+
 
         public dinPizzaViewModel(Pizza pizza)
         {
@@ -73,6 +71,13 @@ namespace EatMore
             dal = new DAL();
             top = dal.Toppings_Get();
         }
+
+
+        public void AddPizza(Pizza dinP)
+        {
+            
+        }
+
 
         public void homie(Pizza pizza)
         {
@@ -140,6 +145,16 @@ namespace EatMore
                     EditPizza.Top.Remove(topping);
                     break;
                 }
+            }
+        }
+
+
+        public event PropertyChangedEventHandler PropertyChanged;
+        private void OnPropertyChanged(string PropertyNavn)
+        {
+            if (PropertyChanged != null)
+            {
+                PropertyChanged(this, new PropertyChangedEventArgs(PropertyNavn));
             }
         }
     }

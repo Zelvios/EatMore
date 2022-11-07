@@ -9,6 +9,8 @@ namespace EatMore
 {
     public class DAL
     {
+        // Databaser
+
         private ObservableCollection<Pizza> DataBasePizza;
 
         private ObservableCollection<Pizza> _DataBasePizza;
@@ -27,10 +29,6 @@ namespace EatMore
         private ObservableCollection<Top> toppingsliste;
         private ObservableCollection<Top> _toppingsliste;
 
-        private ObservableCollection<Pizza> Odreliste;
-        private ObservableCollection<Pizza> _Odreliste;
-
-
         private ObservableCollection<dinPizza> DinPizza;
         private ObservableCollection<dinPizza> _DinPizza;
 
@@ -43,9 +41,8 @@ namespace EatMore
         public DAL()
         {
 
-            Odreliste = new ObservableCollection<Pizza>();
-            _Odreliste= new ObservableCollection<Pizza>();
 
+            // Toppings
 
             toppingsliste = new ObservableCollection<Top>();
             int dalTopIDS = 0;
@@ -92,8 +89,8 @@ namespace EatMore
 
             _toppingsliste = new ObservableCollection<Top>();
 
-
-
+            // --------------------------
+            // Pizza Menu
 
             DataBasePizza = new ObservableCollection<Pizza>();
             int MenuID = 0;
@@ -111,7 +108,7 @@ namespace EatMore
 
             _DataBasePizza = new ObservableCollection<Pizza>();
             // ---------------------------------------------------------------------------------------------------------------------------------------------------
-
+            // Drik Menu
 
             //DRIKS
             int drikID = 49;
@@ -144,12 +141,7 @@ namespace EatMore
             _DataBaseDrikAndet = new ObservableCollection<DrikAndet>();
         }
 
-
         // ---------------------------------------------------------------------------------------------------------------------------------------------------
-
-
-        
-
 
         public ObservableCollection<Pizza> Get()
         {
@@ -164,7 +156,7 @@ namespace EatMore
         public ObservableCollection<Top> Toppings_Get()
         {
             _toppingsliste.Clear(); //Først tømmes den lokale kopi
-                                   //Så løber vi alle elementerne igennem i databasen og overfører til lokal kopi
+                                    //Så løber vi alle elementerne igennem i databasen og overfører til lokal kopi
             foreach (Top p in toppingsliste)
             {
                 _toppingsliste.Add(p);
@@ -173,11 +165,10 @@ namespace EatMore
         }
 
 
-
         public ObservableCollection<Drik> Drik_Get()
         {
             _DataBaseDrik.Clear(); //Først tømmes den lokale kopi
-                                    //Så løber vi alle elementerne igennem i databasen og overfører til lokal kopi
+                                   //Så løber vi alle elementerne igennem i databasen og overfører til lokal kopi
             foreach (Drik p in DataBaseDrik)
             {
                 _DataBaseDrik.Add(p);
@@ -188,7 +179,7 @@ namespace EatMore
         public ObservableCollection<DrikHalv> DrikHalv_Get()
         {
             _DataBaseDrikHalv.Clear(); //Først tømmes den lokale kopi
-                                   //Så løber vi alle elementerne igennem i databasen og overfører til lokal kopi
+                                       //Så løber vi alle elementerne igennem i databasen og overfører til lokal kopi
             foreach (DrikHalv p in DataBaseDrikHalv)
             {
                 _DataBaseDrikHalv.Add(p);
@@ -199,7 +190,7 @@ namespace EatMore
         public ObservableCollection<DrikAndet> DrikAndet_Get()
         {
             _DataBaseDrikAndet.Clear(); //Først tømmes den lokale kopi
-                                   //Så løber vi alle elementerne igennem i databasen og overfører til lokal kopi
+                                        //Så løber vi alle elementerne igennem i databasen og overfører til lokal kopi
             foreach (DrikAndet p in DataBaseDrikAndet)
             {
                 _DataBaseDrikAndet.Add(p);
@@ -210,17 +201,13 @@ namespace EatMore
         public ObservableCollection<Pizza> Pizza_Get()
         {
             _DataBasePizza.Clear(); //Først tømmes den lokale kopi
-                                  //Så løber vi alle elementerne igennem i databasen og overfører til lokal kopi
+                                    //Så løber vi alle elementerne igennem i databasen og overfører til lokal kopi
             foreach (Pizza p in DataBasePizza)
             {
                 _DataBasePizza.Add(p);
             }
             return _DataBasePizza;
         }
-
-
-
-
     }
-   
+
 }

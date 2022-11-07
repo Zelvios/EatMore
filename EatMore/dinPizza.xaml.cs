@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Linq;
+using System.Printing;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -23,7 +24,7 @@ namespace EatMore
     {
         
         dinPizzaViewModel viewModel;
-
+        public Pizza nyPizza { get; set; }
 
         //RealPris = den pris med topping som kommer med over fra mainwindow
         public dinPizza(Pizza pizza, double realpris)
@@ -65,8 +66,15 @@ namespace EatMore
 
         private void AddPizza(object sender, RoutedEventArgs e)
         {
-
+            nyPizza = viewModel.EditPizza;
+            DialogResult = true;
         }
+
+        private void FjernPizza(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
+        
 
         //private void AntalTil_Click(object sender, RoutedEventArgs e)
         //{
