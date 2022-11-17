@@ -37,6 +37,8 @@ namespace EatMore
         }
 
 
+
+        // Skifte mellem drik og Pizza:
         private void pizzaButton_Click(object sender, RoutedEventArgs e)
         {
             pizzaBox.Visibility = Visibility.Visible;
@@ -49,6 +51,10 @@ namespace EatMore
             drikBox.Visibility = Visibility.Visible;
         }
 
+
+
+
+        // Tilføj en pizza
         private void Tilføj_Pizza(object sender, RoutedEventArgs e)
         {
 
@@ -61,6 +67,7 @@ namespace EatMore
                 {
                     DAL d = new DAL();
 
+                    // 
                     Pizza oldPizza = null;
                     Pizza newPizza = null;
 
@@ -68,6 +75,7 @@ namespace EatMore
                     {
                         if (pizza.ID == m.ID)
                         {
+
                             oldPizza = pizza;
                             PizzaPresenter p = new PizzaPresenter(pizza);
                             double realpris = p.Pris;
@@ -85,15 +93,18 @@ namespace EatMore
 
                         Debug.WriteLine($"prisen er {realpris}");
 
-
+                        
                         newPizza.Pris = realpris;
                         vm.testpizzza(newPizza);
+                        vm.TotalPrisUpdate();
+                        vm.AntalUpdate();
                     }
 
                 }
             }
-
         }
+
+
         private void AddAntal_Click(object sender, RoutedEventArgs e)
         {
             Button b = (Button)sender;
@@ -103,15 +114,76 @@ namespace EatMore
 
                 if (m != null)
                 {
-                    //m.Antal++;
-                    //m.Pris = m.Antal * m.Pris;
+                    
                     vm.AddAntal(m);
-
-
+                    vm.TotalPrisUpdate();
+                    vm.AntalUpdate();
                 }
             }
         }
         private void RemoveAntal_Click(object sender, RoutedEventArgs e)
+        {
+            Button b = (Button)sender;
+            if (b != null)
+            {
+                PizzaPresenter m = (PizzaPresenter)b.DataContext;
+
+                if (m != null)
+                {
+
+                    vm.RemoveAntal(m);
+                    vm.TotalPrisUpdate();
+                    vm.AntalUpdate();
+                }
+            }
+        }
+
+        private void SletPizza_Click(object sender, RoutedEventArgs e)
+        {
+            Button b = (Button)sender;
+            if (b != null)
+            {
+                PizzaPresenter m = (PizzaPresenter)b.DataContext;
+
+                if (m != null)
+                {
+                    vm.DeletePizza(m);
+                    vm.TotalPrisUpdate();
+                    vm.AntalUpdate();
+                }
+            }
+        }
+
+        private void Fjern(object sender, RoutedEventArgs e)
+        {
+            vm.ClearOrder();
+            vm.TotalPrisUpdate();
+            vm.AntalUpdate();
+        }
+
+
+
+
+
+        private void Drik_Click(object sender, RoutedEventArgs e)
+        {
+            Button b = (Button)sender;
+            if (b != null)
+            {
+                Drik m = (Drik)b.DataContext;
+
+                if (m != null)
+                {
+                    vm.AddlDrik(m);             
+                }
+            }
+        }
+        private void DrikHalv_Click(object sender, RoutedEventArgs e)
+        {
+
+        } 
+
+        private void DrikAndet_Click(object sender, RoutedEventArgs e)
         {
 
         }

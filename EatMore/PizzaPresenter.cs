@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace EatMore
 {
-    public class PizzaPresenter : INotifyCollectionChanged
+    public class PizzaPresenter : INotifyPropertyChanged
     {
 
 
@@ -36,7 +36,7 @@ namespace EatMore
             get { return _Antal; }
             set
             {
-                if (value < 0 || value > 11) { value = 0; }
+                
                 _Antal = value;
                 OnPropertyChanged("Antal");
             }
@@ -45,11 +45,22 @@ namespace EatMore
         public PizzaPresenter(Pizza p)
         {
             this.ID = p.ID;
-            StringBuilder sb = new StringBuilder("-");
+            StringBuilder sb = new StringBuilder("");
+            int counter = 0;
             foreach (var topping in p.Top)
             {
-                sb.Append(", ");
-                sb.Append(topping.Navn); 
+                counter++; 
+                sb.Append(topping.Navn);
+                if (p.Top.Count != counter)
+                {
+                    if (counter == p.Top.Count -1)
+                    {
+                        sb.Append(" og ");
+                    }
+                    else { sb.Append(", "); }
+                }
+                
+
             }
 
             Beskrivelse = sb.ToString();
@@ -64,9 +75,9 @@ namespace EatMore
             }
         }
 
-        
 
-        public PizzaPresenter (int ID, int Nummer, string Navn, ObservableCollection<Top> ToppingOver, double Pris, int Antal)
+
+        public PizzaPresenter(int ID, int Nummer, string Navn, ObservableCollection<Top> ToppingOver, double Pris, int Antal)
         {
             this.ID = ID;
             this.Nummer = Nummer;

@@ -8,30 +8,28 @@ using System.Threading.Tasks;
 
 namespace EatMore
 {
-    public class dinPizzaViewModel: INotifyPropertyChanged
+    public class dinPizzaViewModel : INotifyPropertyChanged
     {
         private double _realpris;
-
-       
-
         public double realpris
         {
             get { return _realpris; }
-            set 
-            { 
+            set
+            {
                 _realpris = value;
                 OnPropertyChanged("realpris");
             }
         }
 
-        private double _Antal;
 
+
+        private double _Antal;
         public double Antal
         {
             get { return _Antal; }
             set
             {
-                if (value < 1 ) { value = 1; }
+                if (value < 1) { value = 1; }
                 {
                     _Antal = value;
                     OnPropertyChanged("Antal");
@@ -39,8 +37,8 @@ namespace EatMore
             }
         }
 
-       
-        
+
+
 
 
         DAL dal;
@@ -53,17 +51,16 @@ namespace EatMore
 
         public ObservableCollection<Top> top { get; private set; }
 
-        
+
 
 
         public dinPizzaViewModel(Pizza pizza)
         {
             _pizza = pizza;
-
             foreach (Top top in _pizza.Top)
             {
                 realpris += top.pris;
-            
+
             }
 
             Antal = _pizza.Antal;
@@ -73,10 +70,6 @@ namespace EatMore
         }
 
 
-        public void AddPizza(Pizza dinP)
-        {
-            
-        }
 
 
         public void homie(Pizza pizza)
@@ -114,11 +107,13 @@ namespace EatMore
                 if (top[i].ID == topping.ID)
                 {
                     top.Remove(topping);
-                    
+
                     break;
                 }
             }
         }
+
+
         public void top_add1(Top topping)
         {
             for (int i = EditPizza.Top.Count - 1; i >= 0; i--)
@@ -126,7 +121,7 @@ namespace EatMore
                 if (EditPizza.Top[i].ID == topping.ID)
                 {
                     top.Add(topping);
-                    
+
                     break;
                 }
 
@@ -134,7 +129,6 @@ namespace EatMore
         }
 
 
-       
         public void top_delete1(Top topping)
         {
             for (int i = EditPizza.Top.Count - 1; i >= 0; i--)

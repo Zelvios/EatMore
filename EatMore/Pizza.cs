@@ -14,7 +14,7 @@ namespace EatMore
         public int ID { get; set; }
         public int Nummer { get; private set; }
         public string Navn { get; private set; }
-        public ObservableCollection<Top> Top { get; private set; }
+        public ObservableCollection<Top> Top { get; set; }
         private double _Pris;
 
         public double Pris
@@ -28,7 +28,8 @@ namespace EatMore
         }
 
         private int _Antal;
-        public int Antal {
+        public int Antal
+        {
             get { return _Antal; }
             set
             {
@@ -49,7 +50,7 @@ namespace EatMore
         /// <param name="Navn"></param>
         /// <param name="toppings"></param>
         /// <param name="Pris"></param>
-        public Pizza (int ID, int Nummer, string Navn, ObservableCollection<Top> toppings, double Pris, int Antal)
+        public Pizza(int ID, int Nummer, string Navn, ObservableCollection<Top> toppings, double Pris, int Antal)
         {
             this.ID = ID;
             this.Nummer = Nummer;

@@ -36,7 +36,7 @@
                                 <Button Click="Tilføj_Tilbe">
                                     <StackPanel Orientation="Horizontal" >
                                         <TextBlock Text="{Binding Path=Navn}" />
-                                        <TextBlock Text="{Binding Path=pris}" />
+                                        <TextBlock Text="{Binding Path=pris, StringFormat='{}{0:C}', ConverterCulture='da-DK'}" />
                                     </StackPanel>
                                 </Button>
                             </DataTemplate>
@@ -54,7 +54,7 @@
 
         <Border BorderThickness="1" BorderBrush="Black" Grid.Row="2" Grid.Column="1" Grid.RowSpan="4">
             <Grid>
-                
+
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="1*" />
                     <ColumnDefinition Width="1*" />
@@ -71,11 +71,11 @@
                 </Grid.RowDefinitions>
 
 
-            <Button Content="Tilføj Pizza" Grid.Column="1" Grid.Row="2" Grid.ColumnSpan="2" Margin="20 0 20 20" Click="AddPizza" />
-            <TextBlock Text="{Binding realpris, StringFormat=N2}" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2"  VerticalAlignment="Bottom" HorizontalAlignment="Center" Foreground="Black" Background="White"/>
-              
+                <Button Content="Tilføj Pizza" Grid.Column="1" Grid.Row="2" Grid.ColumnSpan="2" Margin="20 0 20 20" Click="AddPizza" />
+                <TextBlock Text="{Binding realpris, StringFormat='{}{0:C}', ConverterCulture='da-DK'}" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2"  VerticalAlignment="Bottom" HorizontalAlignment="Center" Foreground="Black" Background="White"/>
 
-                
+
+
                 <Button Content="Anullere" Grid.Column="1" Grid.Row="4" Grid.ColumnSpan="2" VerticalAlignment="Bottom" Margin="30 0 30 0" Height="20" Click="FjernPizza" />
             </Grid>
         </Border>
@@ -115,7 +115,7 @@
                                 <Grid>
                                     <StackPanel Orientation="Horizontal">
                                         <TextBlock Text="{Binding Navn}" />
-                                        <TextBlock Text="{Binding pris}" />
+                                        <TextBlock Text="{Binding pris, StringFormat='{}{0:C}', ConverterCulture='da-DK'}" />
                                     </StackPanel>
                                 </Grid>
                             </Button>

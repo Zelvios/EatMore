@@ -7,7 +7,7 @@
         xmlns:local="clr-namespace:EatMore"
         mc:Ignorable="d"
         Title="Eat More - App" Height="600" Width="800"
-        ResizeMode="NoResize"
+        ResizeMode="CanMinimize"
         WindowStartupLocation="CenterScreen"
         Icon="https://foodhub.scene7.com/is/image/woolworthsltdprod/2004-easy-pepperoni-pizza:Mobile-1300x1150">
     <Grid>
@@ -37,7 +37,7 @@
         <!--Pizzabox, HUSK AT ADD: 
             Visibility="Hidden"
             -->
-        <StackPanel x:Name="pizzaBox" Visibility="Visible" Grid.Column="0" Grid.Row="4" Grid.ColumnSpan="3">
+        <StackPanel x:Name="pizzaBox" Visibility="Hidden" Grid.Column="0" Grid.Row="4" Grid.ColumnSpan="3">
             <Grid Height="400" Background="#bdbbbb" >
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="1*"/>
@@ -91,8 +91,7 @@
                                                 </ItemsControl>
                                             </StackPanel>
                                             <StackPanel Orientation="Horizontal" Margin="2">
-                                                <TextBlock Text="{Binding Path=Pris, StringFormat=N2}" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="0,0,3,0" FontSize="15"/>
-                                                <TextBlock Text="Kr." FontSize="15" />
+                                                <TextBlock Text="{Binding Path=Pris, StringFormat='{}{0:C}', ConverterCulture='da-DK'}" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="0,0,3,0" FontSize="15"/>
                                             </StackPanel>
                                         </StackPanel>
                                     </Button>
@@ -106,8 +105,9 @@
 
 
         <!-- DRIKKE PANEL-->
-        <StackPanel x:Name="drikBox" Visibility="Hidden" Grid.Column="0" Grid.Row="4" Grid.ColumnSpan="3">
+        <StackPanel x:Name="drikBox" Visibility="Visible" Grid.Column="0" Grid.Row="4" Grid.ColumnSpan="3">
             <Grid Height="400" >
+
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="1*"/>
                     <ColumnDefinition Width="1*"/>
@@ -125,53 +125,82 @@
                     <RowDefinition Height="1*"/>
                     <RowDefinition Height="1*"/>
                 </Grid.RowDefinitions>
+
+
                 <Label Content="Drik" FontSize="20" Margin="0, 0, 100, 0" Grid.Row="0" Grid.ColumnSpan="2" VerticalAlignment="Center" FontWeight="Bold"  />
 
 
                 <Label Content="0.5L Drikkevare" Grid.Row="2" Grid.ColumnSpan="2" Grid.Column="0" VerticalAlignment="Bottom" HorizontalContentAlignment="Center" FontWeight="Bold" FontSize="14" />
-                <ListBox Grid.Row="3" Grid.RowSpan="2" Grid.Column="0" Grid.ColumnSpan="2" ItemsSource="{Binding _LocalDrikHalv}" Margin="1" ScrollViewer.VerticalScrollBarVisibility="Hidden" HorizontalContentAlignment="Stretch">
+                <Grid Grid.Row="3" Grid.ColumnSpan="2" Grid.RowSpan="2">
+                    <Border BorderBrush="Black" BorderThickness="1.5">
+                        <ScrollViewer VerticalScrollBarVisibility="Hidden">
+                            <ItemsControl ItemsSource="{Binding _LocalDrikHalv}">
+                                <ItemsControl.ItemTemplate>
+                                    <DataTemplate>
+                                        <Button Background="White" Click="DrikHalv_Click">
+                                            <StackPanel Orientation="Horizontal">
+                                                <TextBlock Text="{Binding Navn}" MinWidth="100"/>
+                                                <TextBlock Text="{Binding Path=Pris, StringFormat='{}{0:C}', ConverterCulture='da-DK'}"/>
+                                            </StackPanel>
+                                        </Button>
+                                    </DataTemplate>
+                                </ItemsControl.ItemTemplate>
+                            </ItemsControl>
+                        </ScrollViewer>
+                    </Border>
+                </Grid>
+                <!--<ListBox Grid.Row="3" Grid.RowSpan="2" Grid.Column="0" Grid.ColumnSpan="2" ItemsSource="{Binding _LocalDrikHalv}" Margin="1" ScrollViewer.VerticalScrollBarVisibility="Hidden" HorizontalContentAlignment="Stretch">
                     <ListBox.ItemTemplate>
                         <DataTemplate>
                             <Grid>
                                 <TextBlock Text="{Binding Navn}" MaxWidth="110" TextWrapping="Wrap" HorizontalAlignment="Left"/>
                                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0">
-                                    <TextBlock Text="{Binding Path=Pris}" HorizontalAlignment="Right" Margin="0 0 3 0" TextWrapping="Wrap" MaxWidth="20"/>
-                                    <TextBlock Text="Kr." HorizontalAlignment="Right"/>
+                                    <TextBlock Text="{Binding Path=Pris, StringFormat='{}{0:C}', ConverterCulture='da-DK'}" HorizontalAlignment="Right" Margin="0" TextWrapping="Wrap" MaxWidth="50"/>
                                 </StackPanel>
                             </Grid>
                         </DataTemplate>
                     </ListBox.ItemTemplate>
-                </ListBox>
+                </ListBox>-->
 
                 <Label Content="1.5L Drikkevare" Grid.Row="2" Grid.Column="2" Grid.ColumnSpan="2" VerticalAlignment="Bottom" HorizontalContentAlignment="Center" FontWeight="Bold" FontSize="14" />
-                <ListBox Grid.Row="3" Grid.RowSpan="2" Grid.Column="2" Grid.ColumnSpan="2" ItemsSource="{Binding _LocalDrik}" Margin="1" ScrollViewer.VerticalScrollBarVisibility="Hidden" HorizontalContentAlignment="Stretch">
-                    <ListBox.ItemTemplate>
-                        <DataTemplate>
-                            <Grid>
-                                <TextBlock Text="{Binding Navn}" MaxWidth="110" TextWrapping="Wrap" HorizontalAlignment="Left"/>
-                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0">
-                                    <TextBlock Text="{Binding Path=Pris}" HorizontalAlignment="Right" Margin="0 0 3 0" TextWrapping="Wrap" MaxWidth="20"/>
-                                    <TextBlock Text="Kr." HorizontalAlignment="Right"/>
-                                </StackPanel>
-                            </Grid>
-                        </DataTemplate>
-                    </ListBox.ItemTemplate>
-                </ListBox>
+                <Grid Grid.Row="3" Grid.Column="2" Grid.ColumnSpan="2" Grid.RowSpan="2">
+                    <Border BorderBrush="Black" BorderThickness="1.5">
+                        <ScrollViewer VerticalScrollBarVisibility="Hidden">
+                            <ItemsControl ItemsSource="{Binding _LocalDrik}">
+                                <ItemsControl.ItemTemplate>
+                                    <DataTemplate>
+                                        <Button Background="White" Click="Drik_Click">
+                                            <StackPanel Orientation="Horizontal">
+                                                <TextBlock Text="{Binding Navn}" MinWidth="100"/>
+                                                <TextBlock Text="{Binding Path=Pris, StringFormat='{}{0:C}', ConverterCulture='da-DK'}"/>
+                                            </StackPanel>
+                                        </Button>
+                                    </DataTemplate>
+                                </ItemsControl.ItemTemplate>
+                            </ItemsControl>
+                        </ScrollViewer>
+                    </Border>
+                </Grid>
 
                 <Label Content="0.5L Andre Drikkevare" Grid.Row="2" Grid.Column="4"  Grid.ColumnSpan="2" VerticalAlignment="Bottom" HorizontalContentAlignment="Center" FontWeight="Bold" FontSize="14" />
-                <ListBox Grid.Row="3" Grid.RowSpan="2" Grid.Column="4" Grid.ColumnSpan="2" ItemsSource="{Binding _LocalDrikAndet}" Margin="1" ScrollViewer.VerticalScrollBarVisibility="Hidden" HorizontalContentAlignment="Stretch">
-                    <ListBox.ItemTemplate>
-                        <DataTemplate>
-                            <Grid>
-                                <TextBlock Text="{Binding Navn}" MaxWidth="110" TextWrapping="Wrap" HorizontalAlignment="Left"/>
-                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0">
-                                    <TextBlock Text="{Binding Path=Pris}" HorizontalAlignment="Right" Margin="0 0 3 0" TextWrapping="Wrap" MaxWidth="20"/>
-                                    <TextBlock Text="Kr." HorizontalAlignment="Right"/>
-                                </StackPanel>
-                            </Grid>
-                        </DataTemplate>
-                    </ListBox.ItemTemplate>
-                </ListBox>
+                <Grid Grid.Row="3" Grid.Column="4" Grid.ColumnSpan="2" Grid.RowSpan="2">
+                    <Border BorderBrush="Black" BorderThickness="1.5">
+                        <ScrollViewer VerticalScrollBarVisibility="Hidden">
+                            <ItemsControl ItemsSource="{Binding _LocalDrikAndet}">
+                                <ItemsControl.ItemTemplate>
+                                    <DataTemplate>
+                                        <Button Background="White" Click="DrikAndet_Click">
+                                            <StackPanel Orientation="Horizontal">
+                                                <TextBlock Text="{Binding Navn}" MinWidth="100"/>
+                                                <TextBlock Text="{Binding Path=Pris, StringFormat='{}{0:C}', ConverterCulture='da-DK'}"/>
+                                            </StackPanel>
+                                        </Button>
+                                    </DataTemplate>
+                                </ItemsControl.ItemTemplate>
+                            </ItemsControl>
+                        </ScrollViewer>
+                    </Border>
+                </Grid>
             </Grid>
         </StackPanel>
 
@@ -188,7 +217,7 @@
                                     <Grid>
                                         <Grid.ColumnDefinitions>
                                             <ColumnDefinition Width="70"/>
-                                            <ColumnDefinition Width="176"/>
+                                            <ColumnDefinition Width="173"/>
                                             <ColumnDefinition Width="50"/>
                                         </Grid.ColumnDefinitions>
                                         <Grid.RowDefinitions>
@@ -200,18 +229,20 @@
                                         <StackPanel Grid.Column="1" Grid.RowSpan="3">
                                             <TextBlock Text="{Binding Beskrivelse}" TextWrapping="Wrap" FontSize="11"/>
                                         </StackPanel>
-                                        <StackPanel Orientation="Horizontal" Grid.Row="1" Grid.Column="0" Margin="4 0 0 0">
-                                            <TextBlock Text="{Binding Pris}" Margin="2 0 2 0"/>
-                                            <TextBlock Text="Kr." Grid.Column="0" Grid.Row="1"/>
-                                        </StackPanel>
-                                        <StackPanel Grid.Column="2" Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Center">
+                                        <WrapPanel Orientation="Horizontal" Grid.Row="1" Grid.Column="0" Margin="4 0 0 0">
+                                            <TextBlock Text="{Binding Pris, StringFormat='{}{0:C}', ConverterCulture='da-DK'}" TextWrapping="Wrap" Margin="2 0 2 0"/>
+                                        </WrapPanel>
+
+                                        <WrapPanel Grid.Column="2" Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Center">
                                             <TextBlock Text="Antal: " FontWeight="Bold"/>
-                                            <TextBlock Text="{Binding Antal}"/>
-                                        </StackPanel>
+                                            <TextBlock Text="{Binding Antal}" TextWrapping="Wrap" />
+                                        </WrapPanel>
                                         <StackPanel Grid.Row="1" Grid.Column="2" Orientation="Vertical">
                                             <Button Content="+"  Height="20" MinHeight="20"  MaxHeight="20" Click="AddAntal_Click"/>
                                             <Button Content="-"  Height="20" MinHeight="20"  MaxHeight="20" Click="RemoveAntal_Click"/>
                                         </StackPanel>
+
+                                        <Button Content="Slet" Grid.Column="0" Grid.Row="2" Height="20" MinHeight="20" MaxHeight="20" Margin="-3 0 3 -2" VerticalAlignment="Bottom" Click="SletPizza_Click"/>
                                     </Grid>
                                 </Button>
                             </DataTemplate>
@@ -220,5 +251,25 @@
                 </ScrollViewer>
             </Grid>
         </Border>
+        <Grid Grid.Row="5" Grid.Column="3">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="1*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="1*"/>
+            </Grid.RowDefinitions>
+
+            <TextBlock Text="{Binding TotalAntal}" HorizontalAlignment="Center"/>
+            <TextBlock Text="Antal Vare" Grid.Row="1" HorizontalAlignment="Center"/>
+
+
+            <Button Content="Bestil" Margin="0 0 -2 -2" Grid.Column="2" Grid.Row="1"/>
+            <TextBlock Text="{Binding TotalPris, StringFormat='{}{0:C}', ConverterCulture='da-DK'}" Grid.Column="2" HorizontalAlignment="Center" />
+
+            <Button Content="🗑️"  Grid.Column="1" Grid.Row="1" Margin="25 0 25 -2" Click="Fjern"/>
+        </Grid>
     </Grid>
 </Window>

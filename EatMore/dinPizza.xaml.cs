@@ -22,7 +22,7 @@ namespace EatMore
     /// </summary>
     public partial class dinPizza : Window
     {
-        
+
         dinPizzaViewModel viewModel;
         public Pizza nyPizza { get; set; }
 
@@ -46,7 +46,7 @@ namespace EatMore
                 if (m != null)
                 {
                     viewModel.top_add(m);
-                    viewModel.top_delete(m);   
+                    viewModel.top_delete(m);
                 }
             }
         }
@@ -58,7 +58,7 @@ namespace EatMore
                 Top m = (Top)b.DataContext;
                 if (m != null)
                 {
-                    viewModel.top_add1(m);                    
+                    viewModel.top_add1(m);
                     viewModel.top_delete1(m);
                 }
             }
@@ -74,7 +74,7 @@ namespace EatMore
         {
             this.Close();
         }
-        
+
 
         //private void AntalTil_Click(object sender, RoutedEventArgs e)
         //{
