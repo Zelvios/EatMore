@@ -43,12 +43,16 @@ namespace EatMore
         {
             pizzaBox.Visibility = Visibility.Visible;
             drikBox.Visibility = Visibility.Hidden;
+            pizzaButton.Background = Brushes.Gray;
+            drik.Background = Brushes.LightBlue;
         }
 
         private void drik_Click(object sender, RoutedEventArgs e)
         {
             pizzaBox.Visibility = Visibility.Hidden;
             drikBox.Visibility = Visibility.Visible;
+            drik.Background = Brushes.Gray;
+            pizzaButton.Background = Brushes.LightBlue;
         }
 
 
@@ -174,18 +178,51 @@ namespace EatMore
 
                 if (m != null)
                 {
-                    vm.AddlDrik(m);             
+                    vm.AddlDrik(m);
+                    vm.TotalPrisUpdate();
+                    vm.AntalUpdate();
                 }
             }
         }
         private void DrikHalv_Click(object sender, RoutedEventArgs e)
         {
+            Button b = (Button)sender;
+            if (b != null)
+            {
+                DrikHalv m = (DrikHalv)b.DataContext;
 
+                if (m != null)
+                {
+                    vm.AddlDrikHalv(m);
+                    vm.TotalPrisUpdate();
+                    vm.AntalUpdate();
+                }
+            }
         } 
 
         private void DrikAndet_Click(object sender, RoutedEventArgs e)
         {
+            Button b = (Button)sender;
+            if (b != null)
+            {
+                DrikAndet m = (DrikAndet)b.DataContext;
 
+                if (m != null)
+                {
+                    vm.AddlDrikAndet(m);
+                    vm.TotalPrisUpdate();
+                    vm.AntalUpdate();
+                }
+            }
+        }
+
+        private void Bestil_Click(object sender, RoutedEventArgs e)
+        {
+            if (vm._OrderListe.Count > 0)
+            {
+                Confirm bestilling = new Confirm(vm._OrderListe, vm.TotalPris);
+                bestilling.ShowDialog();
+            }   
         }
     }
 }

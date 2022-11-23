@@ -120,21 +120,24 @@ namespace EatMore
                             BasePris = pizza.Pris;
                         }
 
-                        pizza.Antal++;
-                        pizza.Pris = pizza.Pris + BasePris;
+                        if (p.ID > 48)
+                        {
+                            pizza.Antal++;
+                            pizza.Pris = pizza.Pris + BaseDrik;
+                        }
+
+                        if (p.ID < 48)
+                        {
+                            pizza.Antal++;
+                            pizza.Pris = pizza.Pris + BasePris;
+                        }
 
                     }
                 }
             }
         }
 
-        public void AddlDrik(Drik d)
-        {
-            ObservableCollection<Top> s;
-            s = new ObservableCollection<Top>();
-            s.Add(new Top(1, "ttt", 2));
-            _OrderListe.Add(new PizzaPresenter(d.ID, 0, d.Navn, new ObservableCollection<Top>(s), d.Pris, d.Antal));
-        }
+        
 
         public void RemoveAntal(PizzaPresenter pizza)
         {
@@ -146,27 +149,114 @@ namespace EatMore
                     {
                         if (p.Antal > 1)
                         {
-                            pizza.Antal--;
-                            pizza.Pris = pizza.Pris - BasePris;
+                            if (p.ID > 48)
+                            {
+                                pizza.Antal--;
+                                pizza.Pris = pizza.Pris - BaseDrik;
+                            }
+                            if (p.ID < 48)
+                            {
+                                pizza.Antal--;
+                                pizza.Pris = pizza.Pris - BasePris;
+                            }
+                            
                         }
                     }
                 }
             }
         }
 
+        public void AddlDrik(Drik d)
+        {
+            ObservableCollection<Top> s;
+            s = new ObservableCollection<Top>();
+            s.Add(new Top(d.ID, "ttt", d.Pris));
+
+            bool check = false;
+
+            for (int i = _OrderListe.Count - 1; i >= 0; i--)
+            {
+                if (d.ID == _OrderListe[i].ID)
+                {
+                    check = true;
+
+
+                    _OrderListe[i].Antal++;
+                    _OrderListe[i].Pris += d.Pris;
+
+                }
+            }
+            if (check == false)
+            {
+                _OrderListe.Add(new PizzaPresenter(d.ID, 0, d.Navn, new ObservableCollection<Top>(s), d.Pris, d.Antal));
+                BaseDrik = d.Pris;
+            }
+
+        }
+
+
+        public void AddlDrikHalv(DrikHalv d)
+        {
+            ObservableCollection<Top> s;
+            s = new ObservableCollection<Top>();
+            s.Add(new Top(d.ID, d.L, d.Pris));
+
+            bool check = false;
+
+            for (int i = _OrderListe.Count - 1; i >= 0; i--)
+            {
+                if (d.ID == _OrderListe[i].ID)
+                {
+                    check = true;
+
+
+                    _OrderListe[i].Antal++;
+                    _OrderListe[i].Pris += d.Pris;
+
+                }
+            }
+            if (check == false)
+            {
+                _OrderListe.Add(new PizzaPresenter(d.ID, 0, d.Navn, s, d.Pris, d.Antal));
+                BaseDrik = d.Pris;
+            }
+
+        }
+
+        public void AddlDrikAndet(DrikAndet d)
+        {
+            ObservableCollection<Top> s;
+            s = new ObservableCollection<Top>();
+            s.Add(new Top(d.ID, "ttt", d.Pris));
+
+            bool check = false;
+
+            for (int i = _OrderListe.Count - 1; i >= 0; i--)
+            {
+                if (d.ID == _OrderListe[i].ID)
+                {
+                    check = true;
+
+
+                    _OrderListe[i].Antal++;
+                    _OrderListe[i].Pris += d.Pris;
+
+                }
+            }
+            if (check == false)
+            {
+                _OrderListe.Add(new PizzaPresenter(d.ID, 0, d.Navn, new ObservableCollection<Top>(s), d.Pris, d.Antal));
+                BaseDrik = d.Pris;
+            }
+
+        }
+
+
+
         public void DeletePizza(PizzaPresenter pizza)
         {
             _OrderListe.Remove(pizza);
         }
-
-
-        public ObservableCollection<PizzaPresenter> OrderGet()
-        {
-            return _OrderListe;
-        }
-
-
-
 
 
 

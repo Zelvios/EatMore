@@ -27,8 +27,8 @@
         </Grid.RowDefinitions>
 
         <emoji:TextBlock Text="🍕Eat More" Margin="10,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="24" FontWeight="Bold" FontFamily="Times New Roman" Height="38" />
-        <Button x:Name="pizzaButton" Content="Pizza" Grid.Column="0" Grid.Row="3" Margin="25,10,25,1" FontSize="18" Background="LightBlue" Click="pizzaButton_Click" />
-        <Button x:Name="drik" Content="Drikke" Grid.Column="1" Grid.Row="3" Margin="25,10,25,1" FontSize="18" Background="LightBlue" Click="drik_Click" />
+        <Button x:Name="pizzaButton" Content="Pizza" Grid.Column="0" Grid.Row="3" Margin="25,10,25,-1" FontSize="18" Background="LightBlue" Click="pizzaButton_Click" />
+        <Button x:Name="drik" Content="Drikke" Grid.Column="1" Grid.Row="3" Margin="25,10,25,-1" FontSize="18" Background="LightBlue" Click="drik_Click" />
 
 
         <Rectangle Grid.Column="0" Grid.Row="4" Stroke="Black" Grid.ColumnSpan="3" Margin="0,1,0,1" />
@@ -106,7 +106,7 @@
 
         <!-- DRIKKE PANEL-->
         <StackPanel x:Name="drikBox" Visibility="Visible" Grid.Column="0" Grid.Row="4" Grid.ColumnSpan="3">
-            <Grid Height="400" >
+            <Grid Height="400">
 
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="1*"/>
@@ -125,8 +125,10 @@
                     <RowDefinition Height="1*"/>
                     <RowDefinition Height="1*"/>
                 </Grid.RowDefinitions>
-
-
+                
+                <Grid Grid.Row="0" Grid.Column="0" Grid.RowSpan="4" Grid.ColumnSpan="6" MaxHeight="121">
+                    <Image Source="coca.jpg" Stretch="Fill" Margin="0 -50 0 0"/>
+                </Grid>
                 <Label Content="Drik" FontSize="20" Margin="0, 0, 100, 0" Grid.Row="0" Grid.ColumnSpan="2" VerticalAlignment="Center" FontWeight="Bold"  />
 
 
@@ -266,7 +268,7 @@
             <TextBlock Text="Antal Vare" Grid.Row="1" HorizontalAlignment="Center"/>
 
 
-            <Button Content="Bestil" Margin="0 0 -2 -2" Grid.Column="2" Grid.Row="1"/>
+            <Button Content="Bestil" Margin="0 0 -2 -2" Grid.Column="2" Grid.Row="1" Click="Bestil_Click"/>
             <TextBlock Text="{Binding TotalPris, StringFormat='{}{0:C}', ConverterCulture='da-DK'}" Grid.Column="2" HorizontalAlignment="Center" />
 
             <Button Content="🗑️"  Grid.Column="1" Grid.Row="1" Margin="25 0 25 -2" Click="Fjern"/>

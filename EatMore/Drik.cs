@@ -11,7 +11,7 @@ namespace EatMore
     public class Drik : INotifyPropertyChanged
     {
         public int ID { get; private set; }
-        public double L { get; private set; }
+        public string L { get; private set; }
         public string Navn { get; private set; }
         public double Pris { get; private set; }
         private int _Antal;
@@ -27,7 +27,7 @@ namespace EatMore
         }
 
 
-        public Drik(int ID, double L, string Navn, double Pris, int Antal)
+        public Drik(int ID, string L, string Navn, double Pris, int Antal)
         {
             this.ID = ID;
             this.L = L;

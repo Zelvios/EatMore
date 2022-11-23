@@ -31,7 +31,7 @@ namespace EatMore
         {
             viewModel = new dinPizzaViewModel(pizza);
             this.DataContext = viewModel;
-            viewModel.homie(pizza);
+            viewModel.CountR(pizza);
             InitializeComponent();
         }
 

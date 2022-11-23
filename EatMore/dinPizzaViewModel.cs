@@ -72,7 +72,7 @@ namespace EatMore
 
 
 
-        public void homie(Pizza pizza)
+        public void CountR(Pizza pizza)
         {
             for (int p = pizza.Top.Count - 1; p >= 0; p--)
             {
