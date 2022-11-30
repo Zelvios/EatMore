@@ -72,9 +72,11 @@ namespace EatMore
             }
         }
 
-        public void testpizzza(Pizza pizza)
+        
+        public void addpizzza(Pizza pizza)
         {
             _Order.Add(pizza);
+            
             _OrderListe.Add(new PizzaPresenter(pizza));
         }
 
@@ -188,7 +190,7 @@ namespace EatMore
             }
             if (check == false)
             {
-                _OrderListe.Add(new PizzaPresenter(d.ID, 0, d.Navn, new ObservableCollection<Top>(s), d.Pris, d.Antal));
+                _OrderListe.Add(new PizzaPresenter(d.ID, 0, d.Navn, new ObservableCollection<Top>(s), d.Pris, d.Antal, 0));
                 BaseDrik = d.Pris;
             }
 
@@ -217,7 +219,7 @@ namespace EatMore
             }
             if (check == false)
             {
-                _OrderListe.Add(new PizzaPresenter(d.ID, 0, d.Navn, s, d.Pris, d.Antal));
+                _OrderListe.Add(new PizzaPresenter(d.ID, 0, d.Navn, s, d.Pris, d.Antal, 0));
                 BaseDrik = d.Pris;
             }
 
@@ -245,7 +247,7 @@ namespace EatMore
             }
             if (check == false)
             {
-                _OrderListe.Add(new PizzaPresenter(d.ID, 0, d.Navn, new ObservableCollection<Top>(s), d.Pris, d.Antal));
+                _OrderListe.Add(new PizzaPresenter(d.ID, 0, d.Navn, new ObservableCollection<Top>(s), d.Pris, d.Antal, 0));
                 BaseDrik = d.Pris;
             }
 

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Diagnostics;
+using System.Diagnostics.Metrics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -55,7 +56,55 @@ namespace EatMore
             pizzaButton.Background = Brushes.LightBlue;
         }
 
+        private void EditPizzaMenu(object sender, RoutedEventArgs e)
+        {
+            DAL dal = new DAL();
+            Button b = (Button)sender;
 
+           
+
+            if (b != null)
+            {
+                PizzaPresenter m = (PizzaPresenter)b.DataContext;
+                if (m != null)
+                {
+                    foreach (var item in vm._LocalPizza)
+                    {
+                        if (item.ID == m.ID)
+                        {
+                            m.Pris = item.Pris;
+                        }
+                    }
+                    
+                    Pizza pizza = new Pizza(m.ID, m.Nummer, m.Navn, new ObservableCollection<Top>( m.ToppingOver), m.Pris, m.Antal, m.customID);
+                    double realpris = m.Pris;
+                    
+
+                    dinPizza nyside = new dinPizza(pizza, realpris);
+                    nyside.ShowDialog();
+
+                    if (nyside.nyPizza != null)
+                    {
+                        foreach (var topping in pizza.Top)
+                        {
+                            realpris += topping.pris;
+                        }
+                        m.Pris = realpris;
+                        
+
+                        var piz = (vm._OrderListe.Where(p => p.customID == m.customID).FirstOrDefault());
+
+                        if (piz!= null)
+                        {
+                            piz = new PizzaPresenter(nyside.nyPizza);
+                        }
+
+                        vm.TotalPrisUpdate();
+                        vm.AntalUpdate();
+                    }
+                }
+            }
+        }
 
 
         // Tilføj en pizza
@@ -80,7 +129,10 @@ namespace EatMore
                         if (pizza.ID == m.ID)
                         {
 
+                            pizza.Top = new ObservableCollection<Top>(m.ToppingOver);
+
                             oldPizza = pizza;
+
                             PizzaPresenter p = new PizzaPresenter(pizza);
                             double realpris = p.Pris;
                             dinPizza nyside = new dinPizza(pizza, realpris);
@@ -97,9 +149,9 @@ namespace EatMore
 
                         Debug.WriteLine($"prisen er {realpris}");
 
-                        
+
                         newPizza.Pris = realpris;
-                        vm.testpizzza(newPizza);
+                        vm.addpizzza(newPizza);
                         vm.TotalPrisUpdate();
                         vm.AntalUpdate();
                     }
@@ -118,7 +170,7 @@ namespace EatMore
 
                 if (m != null)
                 {
-                    
+
                     vm.AddAntal(m);
                     vm.TotalPrisUpdate();
                     vm.AntalUpdate();
@@ -198,7 +250,7 @@ namespace EatMore
                     vm.AntalUpdate();
                 }
             }
-        } 
+        }
 
         private void DrikAndet_Click(object sender, RoutedEventArgs e)
         {
@@ -222,7 +274,7 @@ namespace EatMore
             {
                 Confirm bestilling = new Confirm(vm._OrderListe, vm.TotalPris);
                 bestilling.ShowDialog();
-            }   
+            }
         }
     }
 }

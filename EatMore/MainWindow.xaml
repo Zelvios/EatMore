@@ -27,7 +27,7 @@
         </Grid.RowDefinitions>
 
         <emoji:TextBlock Text="🍕Eat More" Margin="10,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="24" FontWeight="Bold" FontFamily="Times New Roman" Height="38" />
-        <Button x:Name="pizzaButton" Content="Pizza" Grid.Column="0" Grid.Row="3" Margin="25,10,25,-1" FontSize="18" Background="LightBlue" Click="pizzaButton_Click" />
+        <Button x:Name="pizzaButton" Content="Pizza" Grid.Column="0" Grid.Row="3" Margin="25,10,25,-1" FontSize="18" Background="Gray" Click="pizzaButton_Click" />
         <Button x:Name="drik" Content="Drikke" Grid.Column="1" Grid.Row="3" Margin="25,10,25,-1" FontSize="18" Background="LightBlue" Click="drik_Click" />
 
 
@@ -37,7 +37,7 @@
         <!--Pizzabox, HUSK AT ADD: 
             Visibility="Hidden"
             -->
-        <StackPanel x:Name="pizzaBox" Visibility="Hidden" Grid.Column="0" Grid.Row="4" Grid.ColumnSpan="3">
+        <StackPanel x:Name="pizzaBox" Visibility="Visible" Grid.Column="0" Grid.Row="4" Grid.ColumnSpan="3">
             <Grid Height="400" Background="#bdbbbb" >
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="1*"/>
@@ -105,7 +105,7 @@
 
 
         <!-- DRIKKE PANEL-->
-        <StackPanel x:Name="drikBox" Visibility="Visible" Grid.Column="0" Grid.Row="4" Grid.ColumnSpan="3">
+        <StackPanel x:Name="drikBox" Visibility="Hidden" Grid.Column="0" Grid.Row="4" Grid.ColumnSpan="3">
             <Grid Height="400">
 
                 <Grid.ColumnDefinitions>
@@ -127,12 +127,12 @@
                 </Grid.RowDefinitions>
                 
                 <Grid Grid.Row="0" Grid.Column="0" Grid.RowSpan="4" Grid.ColumnSpan="6" MaxHeight="121">
-                    <Image Source="coca.jpg" Stretch="Fill" Margin="0 -50 0 0"/>
+                    <Image Source="coca.jpg" Stretch="UniformToFill" Margin="0 -50 0 0"/>
                 </Grid>
-                <Label Content="Drik" FontSize="20" Margin="0, 0, 100, 0" Grid.Row="0" Grid.ColumnSpan="2" VerticalAlignment="Center" FontWeight="Bold"  />
+                <Label Content="Drik" FontSize="20" Margin="0, 0, 100, 0" Grid.Row="0" Grid.ColumnSpan="2" VerticalAlignment="Center" FontWeight="Bold" Foreground="White" />
 
 
-                <Label Content="0.5L Drikkevare" Grid.Row="2" Grid.ColumnSpan="2" Grid.Column="0" VerticalAlignment="Bottom" HorizontalContentAlignment="Center" FontWeight="Bold" FontSize="14" />
+                <Label Content="0.5L Drikkevare" Grid.Row="2" Grid.ColumnSpan="2" Grid.Column="0" VerticalAlignment="Bottom" HorizontalContentAlignment="Center" FontWeight="Bold" FontSize="14" Foreground="black" />
                 <Grid Grid.Row="3" Grid.ColumnSpan="2" Grid.RowSpan="2">
                     <Border BorderBrush="Black" BorderThickness="1.5">
                         <ScrollViewer VerticalScrollBarVisibility="Hidden">
@@ -164,7 +164,7 @@
                     </ListBox.ItemTemplate>
                 </ListBox>-->
 
-                <Label Content="1.5L Drikkevare" Grid.Row="2" Grid.Column="2" Grid.ColumnSpan="2" VerticalAlignment="Bottom" HorizontalContentAlignment="Center" FontWeight="Bold" FontSize="14" />
+                <Label Content="1.5L Drikkevare" Grid.Row="2" Grid.Column="2" Grid.ColumnSpan="2" VerticalAlignment="Bottom" HorizontalContentAlignment="Center" FontWeight="Bold" FontSize="14" Foreground="black" />
                 <Grid Grid.Row="3" Grid.Column="2" Grid.ColumnSpan="2" Grid.RowSpan="2">
                     <Border BorderBrush="Black" BorderThickness="1.5">
                         <ScrollViewer VerticalScrollBarVisibility="Hidden">
@@ -184,7 +184,7 @@
                     </Border>
                 </Grid>
 
-                <Label Content="0.5L Andre Drikkevare" Grid.Row="2" Grid.Column="4"  Grid.ColumnSpan="2" VerticalAlignment="Bottom" HorizontalContentAlignment="Center" FontWeight="Bold" FontSize="14" />
+                <Label Content="0.5L Andre Drikkevare" Grid.Row="2" Grid.Column="4"  Grid.ColumnSpan="2" VerticalAlignment="Bottom" HorizontalContentAlignment="Center" FontWeight="Bold" FontSize="14" Foreground="black"/>
                 <Grid Grid.Row="3" Grid.Column="4" Grid.ColumnSpan="2" Grid.RowSpan="2">
                     <Border BorderBrush="Black" BorderThickness="1.5">
                         <ScrollViewer VerticalScrollBarVisibility="Hidden">
@@ -215,7 +215,7 @@
                     <ItemsControl ItemsSource="{Binding _OrderListe}">
                         <ItemsControl.ItemTemplate>
                             <DataTemplate>
-                                <Button Background="LightBlue" HorizontalContentAlignment="Left">
+                                <StackPanel Background="LightBlue" >
                                     <Grid>
                                         <Grid.ColumnDefinitions>
                                             <ColumnDefinition Width="70"/>
@@ -244,9 +244,13 @@
                                             <Button Content="-"  Height="20" MinHeight="20"  MaxHeight="20" Click="RemoveAntal_Click"/>
                                         </StackPanel>
 
-                                        <Button Content="Slet" Grid.Column="0" Grid.Row="2" Height="20" MinHeight="20" MaxHeight="20" Margin="-3 0 3 -2" VerticalAlignment="Bottom" Click="SletPizza_Click"/>
+                                        <StackPanel Orientation="Horizontal" Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="2">
+                                            <Button Content="Slet"  Height="20" MinHeight="20" MaxHeight="20" Width="30" Margin="0 0 0 0" VerticalAlignment="Bottom" Click="SletPizza_Click"/>
+                                            <Button Content="Redigere" Height="20" MinHeight="20" MaxHeight="20" Margin="0 0 0 0" Width="70" VerticalAlignment="Bottom" Click="EditPizzaMenu"/>
+                                        </StackPanel>
+                                        
                                     </Grid>
-                                </Button>
+                                </StackPanel>
                             </DataTemplate>
                         </ItemsControl.ItemTemplate>
                     </ItemsControl>

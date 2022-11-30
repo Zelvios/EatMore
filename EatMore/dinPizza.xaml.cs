@@ -35,7 +35,7 @@ namespace EatMore
             InitializeComponent();
         }
 
-
+        
 
         private void Tilføj_Tilbe(object sender, RoutedEventArgs e)
         {
@@ -47,6 +47,10 @@ namespace EatMore
                 {
                     viewModel.top_add(m);
                     viewModel.top_delete(m);
+                    if (viewModel.EditPizza.Top.Count > 0)
+                    {
+                        viewModel.ManglerTop = "";
+                    }
                 }
             }
         }
@@ -61,13 +65,26 @@ namespace EatMore
                     viewModel.top_add1(m);
                     viewModel.top_delete1(m);
                 }
+                if (viewModel.EditPizza.Top.Count == 0)
+                {
+                    viewModel.ManglerTop = "Du skal midst have 1 topping.";
+                }
             }
         }
 
+       
         private void AddPizza(object sender, RoutedEventArgs e)
         {
-            nyPizza = viewModel.EditPizza;
-            DialogResult = true;
+            if (viewModel.EditPizza.Top.Count > 0)
+            {
+                nyPizza = viewModel.EditPizza;
+                nyPizza.customID++;
+                DialogResult = true;
+            }
+            else
+            {
+                viewModel.ManglerTop = "HEY!!! du skal midst have 1 topping.";
+            }
         }
 
         private void FjernPizza(object sender, RoutedEventArgs e)

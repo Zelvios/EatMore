@@ -15,6 +15,7 @@ namespace EatMore
         public int Nummer { get; private set; }
         public string Navn { get; private set; }
         public ObservableCollection<Top> Top { get; set; }
+        public int customID { get; set; }
         private double _Pris;
 
         public double Pris
@@ -50,7 +51,7 @@ namespace EatMore
         /// <param name="Navn"></param>
         /// <param name="toppings"></param>
         /// <param name="Pris"></param>
-        public Pizza(int ID, int Nummer, string Navn, ObservableCollection<Top> toppings, double Pris, int Antal)
+        public Pizza(int ID, int Nummer, string Navn, ObservableCollection<Top> toppings, double Pris, int Antal, int customID)
         {
             this.ID = ID;
             this.Nummer = Nummer;
@@ -58,6 +59,7 @@ namespace EatMore
             this.Top = toppings;
             this.Pris = Pris;
             this.Antal = Antal;
+            this.customID = customID;
         }
 
         public event PropertyChangedEventHandler PropertyChanged;

@@ -18,7 +18,9 @@ namespace EatMore
         public int Nummer { get; set; }
         public string Navn { get; set; }
         public string Beskrivelse { get; set; }
-        public ObservableCollection<Top> ToppingOver { get; set; }
+        public ObservableCollection<Top> ToppingOver { get; set; } = new ObservableCollection<Top>();
+        public int customID { get; set; }
+
         private double _Pris;
 
         public double Pris
@@ -28,6 +30,8 @@ namespace EatMore
             {
                 _Pris = value;
                 OnPropertyChanged("Pris");
+                OnPropertyChanged("Beskrivelse");
+
             }
         }
         private int _Antal;
@@ -36,24 +40,49 @@ namespace EatMore
             get { return _Antal; }
             set
             {
-                
+
                 _Antal = value;
                 OnPropertyChanged("Antal");
             }
         }
 
+        public PizzaPresenter(int ID, int Nummer, string Navn, ObservableCollection<Top> ToppingOver, double Pris, int Antal, string Beskrivelse)
+        {
+            this.ID = ID;
+            this.Nummer = Nummer;
+            this.Navn = Navn;
+            this.ToppingOver = ToppingOver;
+            this.Pris = Pris;
+            this.Antal = Antal;
+            this.Beskrivelse = Beskrivelse;
+        }
+
+        public PizzaPresenter(int ID, int Nummer, string Navn, ObservableCollection<Top> ToppingOver, double Pris, int Antal, int customID)
+        {
+            this.ID = ID;
+            this.Nummer = Nummer;
+            this.Navn = Navn;
+            this.ToppingOver = ToppingOver;
+            this.Pris = Pris;
+            this.Antal = Antal;
+            this.customID = customID;
+        }
+        int counter = 0;
         public PizzaPresenter(Pizza p)
         {
             this.ID = p.ID;
             StringBuilder sb = new StringBuilder("");
-            int counter = 0;
+
+
+
             foreach (var topping in p.Top)
             {
-                counter++; 
+
                 sb.Append(topping.Navn);
+                ToppingOver.Add(new Top(topping.ID, topping.Navn, topping.pris));
                 if (p.Top.Count != counter)
                 {
-                    if (counter == p.Top.Count -1)
+                    if (counter == p.Top.Count - 1)
                     {
                         sb.Append(" og ");
                     }
@@ -77,15 +106,7 @@ namespace EatMore
 
 
 
-        public PizzaPresenter(int ID, int Nummer, string Navn, ObservableCollection<Top> ToppingOver, double Pris, int Antal)
-        {
-            this.ID = ID;
-            this.Nummer = Nummer;
-            this.Navn = Navn;
-            this.ToppingOver = ToppingOver;
-            this.Pris = Pris;
-            this.Antal = Antal;
-        }
+
 
         public event NotifyCollectionChangedEventHandler? CollectionChanged;
 

@@ -39,11 +39,11 @@
                                         <RowDefinition Height="1*"/>
                                         <RowDefinition Height="1*"/>
                                     </Grid.RowDefinitions>
-                                    <Border BorderBrush="Black" BorderThickness="0 0 0 1" Margin="0 0 20 0">
-                                        <StackPanel Orientation="Horizontal">
+                                    <Border BorderBrush="Black" BorderThickness="0 0 0 1" Margin="0 0 0 0">
+                                        <WrapPanel Orientation="Horizontal">
                                             <TextBlock Text="{Binding Antal,StringFormat='{}{0:.x}'}" Margin="6 0 0 0"/>
-                                            <TextBlock Text="{Binding Navn}" Margin="10 0 0 1" FontSize="12" FontWeight="Bold" />
-                                        </StackPanel>
+                                            <TextBlock Text="{Binding Navn}" Margin="10 0 0 1" FontSize="12" FontWeight="Bold" TextWrapping="Wrap" />
+                                        </WrapPanel>
                                     </Border>
                                     <TextBlock Text="{Binding Beskrivelse}" Margin="15 0 0 0" TextWrapping="Wrap" Grid.Row="1" Grid.ColumnSpan="2"/>
 

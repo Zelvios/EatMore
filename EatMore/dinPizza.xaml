@@ -35,8 +35,8 @@
                             <DataTemplate>
                                 <Button Click="Tilføj_Tilbe">
                                     <StackPanel Orientation="Horizontal" >
-                                        <TextBlock Text="{Binding Path=Navn}" />
-                                        <TextBlock Text="{Binding Path=pris, StringFormat='{}{0:C}', ConverterCulture='da-DK'}" />
+                                        <TextBlock Text="{Binding Path=Navn}" MinWidth="185"/>
+                                        <TextBlock Text="{Binding Path=pris, StringFormat='{}{0:C}', ConverterCulture='da-DK'}" MinWidth="30"/>
                                     </StackPanel>
                                 </Button>
                             </DataTemplate>
@@ -73,7 +73,7 @@
 
                 <Button Content="Tilføj Pizza" Grid.Column="1" Grid.Row="2" Grid.ColumnSpan="2" Margin="20 0 20 20" Click="AddPizza" />
                 <TextBlock Text="{Binding realpris, StringFormat='{}{0:C}', ConverterCulture='da-DK'}" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2"  VerticalAlignment="Bottom" HorizontalAlignment="Center" Foreground="Black" Background="White"/>
-
+                <TextBlock Text="{Binding ManglerTop}" Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="4" VerticalAlignment="Top" HorizontalAlignment="Center"/>
 
 
                 <Button Content="Anullere" Grid.Column="1" Grid.Row="4" Grid.ColumnSpan="2" VerticalAlignment="Bottom" Margin="30 0 30 0" Height="20" Click="FjernPizza" />
@@ -114,8 +114,8 @@
                             <Button Click="Fjern_Tilbe">
                                 <Grid>
                                     <StackPanel Orientation="Horizontal">
-                                        <TextBlock Text="{Binding Navn}" />
-                                        <TextBlock Text="{Binding pris, StringFormat='{}{0:C}', ConverterCulture='da-DK'}" />
+                                        <TextBlock Text="{Binding Navn}" MinWidth="185"/>
+                                        <TextBlock Text="{Binding pris, StringFormat='{}{0:C}', ConverterCulture='da-DK'}" MinWidth="30"/>
                                     </StackPanel>
                                 </Grid>
                             </Button>

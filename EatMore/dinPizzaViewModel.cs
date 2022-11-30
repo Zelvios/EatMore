@@ -39,8 +39,6 @@ namespace EatMore
 
 
 
-
-
         DAL dal;
         private Pizza _pizza;
         public Pizza EditPizza
@@ -52,16 +50,29 @@ namespace EatMore
         public ObservableCollection<Top> top { get; private set; }
 
 
-
+        private string _ManglerTop;
+        public string ManglerTop
+        {
+            get { return _ManglerTop; }
+            set
+            {
+                _ManglerTop = value;
+                OnPropertyChanged("ManglerTop");
+            }
+        }
 
         public dinPizzaViewModel(Pizza pizza)
         {
             _pizza = pizza;
-            foreach (Top top in _pizza.Top)
+            if (_pizza.Pris == 40)
             {
-                realpris += top.pris;
+                foreach (Top top in _pizza.Top)
+                {
+                    realpris += top.pris;
 
+                }
             }
+
 
             Antal = _pizza.Antal;
             realpris += _pizza.Pris;
