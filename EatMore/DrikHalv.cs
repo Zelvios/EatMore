@@ -26,15 +26,16 @@ namespace EatMore
             }
         }
 
+        public double BasePris { get; internal set; }
 
-        public DrikHalv(int ID, string L, string Navn, double Pris, int Antal)
+        public DrikHalv(int ID, string L, string Navn, double Pris, int Antal, double basePris)
         {
             this.ID = ID;
             this.L = L;
             this.Navn = Navn;
             this.Pris = Pris;
             this.Antal = Antal;
-
+            BasePris = basePris;
         }
         public event NotifyCollectionChangedEventHandler? CollectionChanged;
 

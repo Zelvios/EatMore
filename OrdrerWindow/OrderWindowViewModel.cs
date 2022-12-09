@@ -31,6 +31,12 @@ namespace OrdrerWindow
             _OrderListe = new ObservableCollection<JoeIsHungry>();
         }
 
+        public void fjern(JoeIsHungry b)
+        {
+            OrderListe.Remove(b);
+            
+        }
+
         public void addordere(ObservableCollection<OrderTing> filJson)
         {
             OrderListe.Add(new JoeIsHungry(NummerID, new ObservableCollection<OrderTing>(filJson)));

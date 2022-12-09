@@ -13,6 +13,7 @@ namespace EatMore
         public int ID { get; private set; }
         public string L { get; private set; }
         public string Navn { get; private set; }
+        
         public int Pris { get; private set; }
         private int _Antal;
         public int Antal
@@ -26,14 +27,16 @@ namespace EatMore
             }
         }
 
+        public double BasePris { get; internal set; }
 
-        public DrikAndet(int ID, string L, string Navn, int Pris, int Antal)
+        public DrikAndet(int ID, string L, string Navn, int Pris, int Antal, double BasePris)
         {
             this.ID = ID;
             this.L = L;
             this.Navn = Navn;
             this.Pris = Pris;
             this.Antal= Antal;
+            this.BasePris = BasePris;
 
         }
         public event NotifyCollectionChangedEventHandler? CollectionChanged;

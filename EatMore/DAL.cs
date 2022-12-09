@@ -65,31 +65,31 @@ namespace EatMore
             //DRIKS
             int drikID = 49;
             DataBaseDrik = new ObservableCollection<Drik>();
-            DataBaseDrik.Add(new Drik(drikID++, "1.5L", "Cola", 35, 1));
-            DataBaseDrik.Add(new Drik(drikID++, "1.5L", "Cola Zero", 35, 1));
-            DataBaseDrik.Add(new Drik(drikID++, "1.5L", "Pepsi", 35, 1));
-            DataBaseDrik.Add(new Drik(drikID++, "1.5L", "Pepsi Max", 35, 1));
-            DataBaseDrik.Add(new Drik(drikID++, "1.5L", "Fanta", 35, 1));
-            DataBaseDrik.Add(new Drik(drikID++, "1.5L", "Faxe Kondi", 35, 1));
+            DataBaseDrik.Add(new Drik(drikID++, "1.5L", "1.5L Cola", 35, 1, 35));
+            DataBaseDrik.Add(new Drik(drikID++, "1.5L", "1.5L Cola Zero", 35, 1, 35));
+            DataBaseDrik.Add(new Drik(drikID++, "1.5L", "1.5L Pepsi", 35, 1, 35));
+            DataBaseDrik.Add(new Drik(drikID++, "1.5L", "1.5L Pepsi Max", 35, 1, 35));
+            DataBaseDrik.Add(new Drik(drikID++, "1.5L", "1.5L Fanta", 35, 1, 35));
+            DataBaseDrik.Add(new Drik(drikID++, "1.5L", "1.5L Faxe Kondi", 35, 1, 35));
             _DataBaseDrik = new ObservableCollection<Drik>();
 
 
             //DRINKS 0.5L
             DataBaseDrikHalv = new ObservableCollection<DrikHalv>();
-            DataBaseDrikHalv.Add(new DrikHalv(drikID++, "0.5L", "Cola", 22, 1));
-            DataBaseDrikHalv.Add(new DrikHalv(drikID++, "0.5L", "Cola Zero", 22, 1));
-            DataBaseDrikHalv.Add(new DrikHalv(drikID++, "0.5L", "Pepsi", 22, 1));
-            DataBaseDrikHalv.Add(new DrikHalv(drikID++, "0.5L", "Pepsi Max", 22, 1));
-            DataBaseDrikHalv.Add(new DrikHalv(drikID++, "0.5L", "Fanta", 22, 1));
-            DataBaseDrikHalv.Add(new DrikHalv(drikID++, "0.5L", "Faxe Kondi", 22, 1));
+            DataBaseDrikHalv.Add(new DrikHalv(drikID++, "0.5L", "0.5L Cola", 22, 1, 22));
+            DataBaseDrikHalv.Add(new DrikHalv(drikID++, "0.5L", "0.5L Cola Zero", 22, 1, 22));
+            DataBaseDrikHalv.Add(new DrikHalv(drikID++, "0.5L", "0.5L Pepsi", 22, 1, 22));
+            DataBaseDrikHalv.Add(new DrikHalv(drikID++, "0.5L", "0.5L Pepsi Max", 22, 1, 22));
+            DataBaseDrikHalv.Add(new DrikHalv(drikID++, "0.5L", "0.5L Fanta", 22, 1, 22));
+            DataBaseDrikHalv.Add(new DrikHalv(drikID++, "0.5L", "0.5L Faxe Kondi", 22, 1, 22));
             _DataBaseDrikHalv = new ObservableCollection<DrikHalv>();
 
             //DRINKS ANDET
             DataBaseDrikAndet = new ObservableCollection<DrikAndet>();
-            DataBaseDrikAndet.Add(new DrikAndet(drikID++, "0.5L", "Øl flaske", 20, 1));
-            DataBaseDrikAndet.Add(new DrikAndet(drikID++, "0.5L", "Red Bull", 20, 1));
-            DataBaseDrikAndet.Add(new DrikAndet(drikID++, "0,5L", "Capri Sun", 10, 1));
-            DataBaseDrikAndet.Add(new DrikAndet(drikID++, "0.5L", "Vand", 6, 1));
+            DataBaseDrikAndet.Add(new DrikAndet(drikID++, "0.5L", "0.5L Øl flaske", 20, 1, 20));
+            DataBaseDrikAndet.Add(new DrikAndet(drikID++, "0.5L", "0.5L Red Bull", 20, 1, 20));
+            DataBaseDrikAndet.Add(new DrikAndet(drikID++, "200ml", "200ml Capri Sun", 10, 1, 10));
+            DataBaseDrikAndet.Add(new DrikAndet(drikID++, "0.5L", "0.5L Vand", 6, 1, 6));
             _DataBaseDrikAndet = new ObservableCollection<DrikAndet>();
         }
 

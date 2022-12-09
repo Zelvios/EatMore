@@ -26,10 +26,6 @@ namespace EatMore
         public ObservableCollection<DrikHalv> _LocalDrikHalv { get; private set; }
         public ObservableCollection<DrikAndet> _LocalDrikAndet { get; private set; }
 
-        double BasePris = 0;
-        double BaseDrik = 0;
-
-
         private int _TotalAntal;
 
         public int TotalAntal
@@ -72,23 +68,22 @@ namespace EatMore
             }
         }
 
-        
+
         public void addpizzza(Pizza pizza)
         {
             _Order.Add(pizza);
-            
             _OrderListe.Add(new PizzaPresenter(pizza));
         }
 
         public void AntalUpdate()
         {
             TotalAntal = 0;
-            for ( int i = _OrderListe.Count - 1; i >= 0; i--)
+            for (int i = _OrderListe.Count - 1; i >= 0; i--)
             {
                 TotalAntal += _OrderListe[i].Antal;
             }
         }
-        
+
 
         public void TotalPrisUpdate()
         {
@@ -106,32 +101,42 @@ namespace EatMore
         {
             _OrderListe.Clear();
         }
-
         // 
-        public void AddAntal(PizzaPresenter pizza)
+        public void AddAntal(PizzaPresenter item)
         {
             foreach (var p in _OrderListe)
             {
                 if (p != null)
                 {
-                    if (p.ID == pizza.ID)
+                    if (p.ID == item.ID)
                     {
-
-                        if (pizza.Antal == 1)
-                        {
-                            BasePris = pizza.Pris;
-                        }
-
                         if (p.ID > 48)
                         {
-                            pizza.Antal++;
-                            pizza.Pris = pizza.Pris + BaseDrik;
+
+                            item.Antal++;
+                            item.Pris = item.Pris + item.BasePris;
                         }
 
                         if (p.ID < 48)
                         {
-                            pizza.Antal++;
-                            pizza.Pris = pizza.Pris + BasePris;
+                            if (p.ToppingOver == item.ToppingOver)
+                            {
+                                item.BasePris = item.Pris;
+                                item.BasePris /= item.Antal;
+
+
+                                foreach (var top in item.ToppingOver)
+                                {
+                                    item.BasePris -= top.pris;
+                                }
+
+                                foreach (var top in item.ToppingOver)
+                                {
+                                    item.BasePris += top.pris;
+                                }
+                                item.Antal++;
+                                item.Pris += item.BasePris;
+                            }
                         }
 
                     }
@@ -139,29 +144,43 @@ namespace EatMore
             }
         }
 
-        
 
-        public void RemoveAntal(PizzaPresenter pizza)
+
+        public void RemoveAntal(PizzaPresenter item)
         {
             foreach (var p in _OrderListe)
             {
                 if (p != null)
                 {
-                    if (p.ID == pizza.ID)
+                    if (p.ID == item.ID)
                     {
                         if (p.Antal > 1)
                         {
                             if (p.ID > 48)
                             {
-                                pizza.Antal--;
-                                pizza.Pris = pizza.Pris - BaseDrik;
+                                item.Antal--;
+                                item.Pris = item.Pris - item.BasePris;
                             }
                             if (p.ID < 48)
                             {
-                                pizza.Antal--;
-                                pizza.Pris = pizza.Pris - BasePris;
+
+                                item.BasePris = item.Pris;
+                                item.BasePris /= item.Antal;
+
+
+                                foreach (var top in item.ToppingOver)
+                                {
+                                    item.BasePris -= top.pris;
+                                }
+
+                                foreach (var top in item.ToppingOver)
+                                {
+                                    item.BasePris += top.pris;
+                                }
+                                item.Antal--;
+                                item.Pris = item.Pris - item.BasePris;
                             }
-                            
+
                         }
                     }
                 }
@@ -190,8 +209,9 @@ namespace EatMore
             }
             if (check == false)
             {
-                _OrderListe.Add(new PizzaPresenter(d.ID, 0, d.Navn, new ObservableCollection<Top>(s), d.Pris, d.Antal, 0));
-                BaseDrik = d.Pris;
+                d.BasePris = d.Pris;
+                _OrderListe.Add(new PizzaPresenter(d.ID, 0, d.Navn, new ObservableCollection<Top>(s), d.Pris, d.Antal, 0, d.BasePris));
+
             }
 
         }
@@ -219,8 +239,9 @@ namespace EatMore
             }
             if (check == false)
             {
-                _OrderListe.Add(new PizzaPresenter(d.ID, 0, d.Navn, s, d.Pris, d.Antal, 0));
-                BaseDrik = d.Pris;
+                d.BasePris = d.Pris;
+                _OrderListe.Add(new PizzaPresenter(d.ID, 0, d.Navn, s, d.Pris, d.Antal, 0, d.BasePris));
+
             }
 
         }
@@ -229,7 +250,7 @@ namespace EatMore
         {
             ObservableCollection<Top> s;
             s = new ObservableCollection<Top>();
-            s.Add(new Top(d.ID, "ttt", d.Pris));
+            s.Add(new Top(d.ID, d.L, d.Pris));
 
             bool check = false;
 
@@ -247,8 +268,9 @@ namespace EatMore
             }
             if (check == false)
             {
-                _OrderListe.Add(new PizzaPresenter(d.ID, 0, d.Navn, new ObservableCollection<Top>(s), d.Pris, d.Antal, 0));
-                BaseDrik = d.Pris;
+                d.BasePris = d.Pris;
+                _OrderListe.Add(new PizzaPresenter(d.ID, 0, d.Navn, new ObservableCollection<Top>(s), d.Pris, d.Antal, 0, d.BasePris));
+
             }
 
         }

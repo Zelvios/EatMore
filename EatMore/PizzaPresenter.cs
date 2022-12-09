@@ -17,9 +17,22 @@ namespace EatMore
         public int ID { get; set; }
         public int Nummer { get; set; }
         public string Navn { get; set; }
-        public string Beskrivelse { get; set; }
+        
+        private string _Beskrivelse;
+
+        public string Beskrivelse
+        {
+            get { return _Beskrivelse; }
+            set
+            {
+                _Beskrivelse = value;
+                OnPropertyChanged("Beskrivelse");
+
+            }
+        }
         public ObservableCollection<Top> ToppingOver { get; set; } = new ObservableCollection<Top>();
         public int customID { get; set; }
+        public double BasePris { get; set; }
 
         private double _Pris;
 
@@ -30,7 +43,6 @@ namespace EatMore
             {
                 _Pris = value;
                 OnPropertyChanged("Pris");
-                OnPropertyChanged("Beskrivelse");
 
             }
         }
@@ -57,7 +69,7 @@ namespace EatMore
             this.Beskrivelse = Beskrivelse;
         }
 
-        public PizzaPresenter(int ID, int Nummer, string Navn, ObservableCollection<Top> ToppingOver, double Pris, int Antal, int customID)
+        public PizzaPresenter(int ID, int Nummer, string Navn, ObservableCollection<Top> ToppingOver, double Pris, int Antal, int customID, double BasePris)
         {
             this.ID = ID;
             this.Nummer = Nummer;
@@ -66,6 +78,7 @@ namespace EatMore
             this.Pris = Pris;
             this.Antal = Antal;
             this.customID = customID;
+            this.BasePris = BasePris;
         }
         int counter = 0;
         public PizzaPresenter(Pizza p)
@@ -80,6 +93,7 @@ namespace EatMore
 
                 sb.Append(topping.Navn);
                 ToppingOver.Add(new Top(topping.ID, topping.Navn, topping.pris));
+                counter++;
                 if (p.Top.Count != counter)
                 {
                     if (counter == p.Top.Count - 1)

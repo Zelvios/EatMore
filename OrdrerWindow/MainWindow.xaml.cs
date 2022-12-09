@@ -43,11 +43,24 @@ namespace OrdrerWindow
             if (e.Data.GetDataPresent(DataFormats.FileDrop))
             {
                 Debug.WriteLine("test");
-                string[] FileLoad = (string[]) e.Data.GetData(DataFormats.FileDrop);
+                string[] FileLoad = (string[])e.Data.GetData(DataFormats.FileDrop);
                 string Files = File.ReadAllText(FileLoad[0]);
                 var filJson = JsonConvert.DeserializeObject<ObservableCollection<OrderTing>>(Files);
                 vm.addordere(filJson);
-                
+
+            }
+        }
+        private void fjern(object sender, RoutedEventArgs e)
+        {
+            Button b = (Button)sender;
+
+            if (b != null)
+            {
+                JoeIsHungry m = (JoeIsHungry)b.DataContext;
+                if (m != null)
+                {
+                    vm.fjern(m);
+                }
             }
         }
     }
