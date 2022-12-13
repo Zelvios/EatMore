@@ -14,6 +14,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using System.IO;
+using System.Windows.Media;
+using Typography.OpenFont.Tables;
 
 namespace EatMore
 {
@@ -38,18 +40,30 @@ namespace EatMore
 
         private void HomeSide_Click(object sender, RoutedEventArgs e)
         {
+            var converter = new System.Windows.Media.BrushConverter();
+            var HomeSideColor = (Brush)converter.ConvertFromString("#FF5733");
             HomeSide.Visibility = Visibility.Visible;
-            Button btn = (Button)sender;
-            btn.Foreground = new SolidColorBrush(Colors.Orange);
+            ButtonHomeSide.Foreground = HomeSideColor;
 
+            ButtonPizzaSide.Foreground = new SolidColorBrush(Colors.LightGray);
+            ButtonDrikkevareSide.Foreground = new SolidColorBrush(Colors.LightGray);
             PizzaSide.Visibility = Visibility.Hidden;
             DrikkeSide.Visibility = Visibility.Hidden;
         }
 
+        
+
+
         private void PizzaSide_Click(object sender, RoutedEventArgs e)
         {
-            PizzaSide.Visibility = Visibility.Visible;
+            var converter = new System.Windows.Media.BrushConverter();
+            var PizzaSideColor = (Brush)converter.ConvertFromString("#FF4C70");
 
+            PizzaSide.Visibility = Visibility.Visible;
+            ButtonPizzaSide.Foreground = PizzaSideColor;
+
+            ButtonDrikkevareSide.Foreground = new SolidColorBrush(Colors.LightGray);
+            ButtonHomeSide.Foreground = new SolidColorBrush(Colors.LightGray);
             HomeSide.Visibility = Visibility.Hidden;
             DrikkeSide.Visibility = Visibility.Hidden;
         }
@@ -57,10 +71,15 @@ namespace EatMore
         private void DrikkeSide_Click(object sender, RoutedEventArgs e)
         {
             DrikkeSide.Visibility = Visibility.Visible;
+            ButtonDrikkevareSide.Foreground = new SolidColorBrush(Colors.Cyan);
 
+            ButtonPizzaSide.Foreground = new SolidColorBrush(Colors.LightGray);
+            ButtonHomeSide.Foreground = new SolidColorBrush(Colors.LightGray);
             PizzaSide.Visibility = Visibility.Hidden;
             HomeSide.Visibility = Visibility.Hidden;
         }
+
+        
 
         /// Redigering af Pizza fra Menu
         private void EditPizzaMenu(object sender, RoutedEventArgs e)
@@ -255,52 +274,52 @@ namespace EatMore
 
 
 
-        //        private void Drik_Click(object sender, RoutedEventArgs e)
-        //        { ///Tilføjning af 1.5L driks
-        //            Button b = (Button)sender;
-        //            if (b != null)
-        //            {
-        //                Drik m = (Drik)b.DataContext;
+        private void Drik_Click(object sender, RoutedEventArgs e)
+        { ///Tilføjning af 1.5L driks
+            Button b = (Button)sender;
+            if (b != null)
+            {
+                Drik m = (Drik)b.DataContext;
 
-        //                if (m != null)
-        //                {
-        //                    vm.AddlDrik(m);
-        //                    vm.TotalPrisUpdate();
-        //                    vm.AntalUpdate();
-        //                }
-        //            }
-        //        }
-        //        private void DrikHalv_Click(object sender, RoutedEventArgs e)
-        //        { ///Tilføjning af 0.5L driks
-        //            Button b = (Button)sender;
-        //            if (b != null)
-        //            {
-        //                DrikHalv m = (DrikHalv)b.DataContext;
+                if (m != null)
+                {
+                    vm.AddlDrik(m);
+                    vm.TotalPrisUpdate();
+                    vm.AntalUpdate();
+                }
+            }
+        }
+        private void DrikHalv_Click(object sender, RoutedEventArgs e)
+        { ///Tilføjning af 0.5L driks
+            Button b = (Button)sender;
+            if (b != null)
+            {
+                DrikHalv m = (DrikHalv)b.DataContext;
 
-        //                if (m != null)
-        //                {
-        //                    vm.AddlDrikHalv(m);
-        //                    vm.TotalPrisUpdate();
-        //                    vm.AntalUpdate();
-        //                }
-        //            }
-        //        }
+                if (m != null)
+                {
+                    vm.AddlDrikHalv(m);
+                    vm.TotalPrisUpdate();
+                    vm.AntalUpdate();
+                }
+            }
+        }
 
-        //        private void DrikAndet_Click(object sender, RoutedEventArgs e)
-        //        { ///Tilføjning af andre drikkevare
-        //            Button b = (Button)sender;
-        //            if (b != null)
-        //            {
-        //                DrikAndet m = (DrikAndet)b.DataContext;
+        private void DrikAndet_Click(object sender, RoutedEventArgs e)
+        { ///Tilføjning af andre drikkevare
+            Button b = (Button)sender;
+            if (b != null)
+            {
+                DrikAndet m = (DrikAndet)b.DataContext;
 
-        //                if (m != null)
-        //                {
-        //                    vm.AddlDrikAndet(m);
-        //                    vm.TotalPrisUpdate();
-        //                    vm.AntalUpdate();
-        //                }
-        //            }
-        //        }
+                if (m != null)
+                {
+                    vm.AddlDrikAndet(m);
+                    vm.TotalPrisUpdate();
+                    vm.AntalUpdate();
+                }
+            }
+        }
 
         private void Bestil_Click(object sender, RoutedEventArgs e)
         {

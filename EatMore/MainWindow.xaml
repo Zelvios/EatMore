@@ -11,7 +11,6 @@
         AllowsTransparency="True"
         Title="Eat More - App" Height="700" Width="900">
     <Border>
-
         <Border.Clip>
             <RectangleGeometry RadiusX="30"
                                RadiusY="30"
@@ -66,7 +65,7 @@
                     <Button.Style>
                         <Style TargetType="Button">
                             <Setter Property="TextElement.FontFamily" Value="Fonts/Dosis"/>
-                            <Setter Property="Foreground" Value="LightGray"/>
+                            <Setter Property="Foreground" Value="#FF5733"/>
                             <Setter Property="Cursor" Value="Hand"/>
                             <Style.Triggers>
                                 <Trigger Property="IsMouseOver" Value="True">
@@ -86,7 +85,8 @@
                 </Button>
 
 
-                <Button    Content="Pizza"
+                <Button x:Name="ButtonPizzaSide" 
+                       Content="Pizza"
                        Grid.Column="2"
                        VerticalAlignment="Center"
                        HorizontalAlignment="Center"
@@ -120,7 +120,8 @@
 
                 </Button>
 
-                <Button Content="Drikkevare"
+                <Button x:Name="ButtonDrikkevareSide" 
+                       Content="Drikkevare"
                        Grid.Column="3"
                        VerticalAlignment="Center"
                        HorizontalAlignment="Center"
@@ -157,7 +158,7 @@
                         Grid.Column="12" 
                         Grid.ColumnSpan="2"
                         HorizontalAlignment="Right"
-                        Margin="0 0 15 0"
+                        Margin="0 0 0 0"
                         >
 
                     <Button x:Name="WindowMinimize" 
@@ -219,8 +220,7 @@
                         </Button.Style>
                         <Button.Template>
                             <ControlTemplate TargetType="Button">
-                                <Border Background="{TemplateBinding Background}"
-                                        CornerRadius="0 10 10 0">
+                                <Border Background="{TemplateBinding Background}">
 
                                     <ContentPresenter VerticalAlignment="Center"
                                                       HorizontalAlignment="Center"/>
@@ -237,7 +237,7 @@
 
             <Border Grid.Row="1" 
                 Grid.ColumnSpan="3"
-                Visibility="Hidden"
+                Visibility="Visible"
                 x:Name="HomeSide">
                 <Border.Background>
                     <LinearGradientBrush StartPoint="0,1" EndPoint="1,0">
@@ -387,7 +387,7 @@
 
             <Border Grid.Row="1" 
                 Grid.ColumnSpan="3"
-                Visibility="Visible"
+                Visibility="Hidden"
                 x:Name="PizzaSide">
                 <Border.Background>
                     <LinearGradientBrush StartPoint="0,1" EndPoint="1,0">
@@ -442,7 +442,7 @@
                                     <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
                                         <GradientStop Color="#383660" Offset="0"/>
                                         <GradientStop Color="#FF4C70" Offset="0.6"/>
-                                        <GradientStop Color="black " Offset="0.7"/>
+                                        <GradientStop Color="DarkRed" Offset="0.7"/>
                                         <GradientStop Color="#383660" Offset="0.9"/>
                                     </LinearGradientBrush>
                                 </Border.Background>
@@ -461,89 +461,94 @@
                                                FontSize="18" 
                                                FontWeight="Bold"
                                                FontFamily="Fonts/#Dosis"/>
-                                    <Grid Grid.Row="1">
-                                        <ScrollViewer ScrollViewer.VerticalScrollBarVisibility="Hidden">
-                                            <ItemsControl ItemsSource="{Binding Pizza}">
-                                                <ItemsControl.ItemTemplate>
-                                                    <DataTemplate>
-                                                        <Border>
-                                                            <Button x:Name="ValgPizza" 
-                                            HorizontalContentAlignment="Left" 
-                                            Margin="6" 
-                                            Click="Tilføj_Pizza">
-                                                                <Button.Style>
-                                                                    <Style TargetType="Button">
-                                                                        <Setter Property="TextElement.FontFamily" Value="Fonts/Dosis"/>
-                                                                        <Setter Property="Background" Value="White"/>
-                                                                        <Setter Property="Cursor" Value="Hand"/>
-                                                                        <Style.Triggers>
-                                                                            <Trigger Property="IsMouseOver" Value="True">
-                                                                                <Setter Property="Background" Value="#FF4C70"/>
-                                                                            </Trigger>
-                                                                        </Style.Triggers>
-                                                                    </Style>
-                                                                </Button.Style>
-                                                                <Button.Template>
-                                                                    <ControlTemplate TargetType="Button">
-                                                                        <Border CornerRadius="12"
-                                                                Background="{TemplateBinding Background}">
+                                    <Border Grid.Row="1"
+                                            BorderBrush="White"
+                                            BorderThickness="0 2 0 0" >
+                                        <Grid >
+                                            <ScrollViewer ScrollViewer.VerticalScrollBarVisibility="Hidden">
+                                                <ItemsControl ItemsSource="{Binding Pizza}">
+                                                    <ItemsControl.ItemTemplate>
+                                                        <DataTemplate>
+                                                            <Border>
+                                                                <Button x:Name="ValgPizza" 
+                                                                    HorizontalContentAlignment="Left" 
+                                                                    Margin="6" 
+                                                                    Click="Tilføj_Pizza">
+                                                                    <Button.Style>
+                                                                        <Style TargetType="Button">
+                                                                            <Setter Property="TextElement.FontFamily" Value="Fonts/Dosis"/>
+                                                                            <Setter Property="Background" Value="White"/>
+                                                                            <Setter Property="Cursor" Value="Hand"/>
+                                                                            <Style.Triggers>
+                                                                                <Trigger Property="IsMouseOver" Value="True">
+                                                                                    <Setter Property="Background" Value="#FF4C70"/>
+                                                                                </Trigger>
+                                                                            </Style.Triggers>
+                                                                        </Style>
+                                                                    </Button.Style>
+                                                                    <Button.Template>
+                                                                        <ControlTemplate TargetType="Button">
+                                                                            <Border CornerRadius="12"
+                                                                                Background="{TemplateBinding Background}">
 
-                                                                            <ContentPresenter VerticalAlignment="Center"
+                                                                                <ContentPresenter VerticalAlignment="Center"
                                                                               HorizontalAlignment="Left"/>
-                                                                        </Border>
-                                                                    </ControlTemplate>
-                                                                </Button.Template>
-                                                                <Button.Resources>
-                                                                    <Style TargetType="Border">
-                                                                        <Setter Property="CornerRadius" Value="20"/>
-                                                                    </Style>
-                                                                </Button.Resources>
-                                                                <StackPanel Orientation="Vertical" >
-                                                                    <StackPanel Orientation="Horizontal">
-                                                                        <TextBlock Text="{Binding Path=Nummer}" 
+                                                                            </Border>
+                                                                        </ControlTemplate>
+                                                                    </Button.Template>
+                                                                    <Button.Resources>
+                                                                        <Style TargetType="Border">
+                                                                            <Setter Property="CornerRadius" Value="20"/>
+                                                                        </Style>
+                                                                    </Button.Resources>
+                                                                    <StackPanel Orientation="Vertical" >
+                                                                        <StackPanel Orientation="Horizontal">
+                                                                            <TextBlock Text="{Binding Path=Nummer}" 
                                                                    Margin="10,0,3,0" 
                                                                    FontSize="15" 
                                                                    FontWeight="Bold"
                                                                    FontFamily="Fonts/#Dosis"/>
-                                                                        <TextBlock Text="{Binding Path=Navn}" 
+                                                                            <TextBlock Text="{Binding Path=Navn}" 
                                                                    FontSize="15" 
                                                                    FontWeight="Bold"
                                                                    FontFamily="Fonts/#Dosis"/>
-                                                                    </StackPanel>
-                                                                    <StackPanel HorizontalAlignment="Left" 
+                                                                        </StackPanel>
+                                                                        <StackPanel HorizontalAlignment="Left" 
                                                                 Orientation="Vertical"
                                                                 Margin="10 0 15 0">
-                                                                        <ItemsControl ItemsSource="{Binding Path=Beskrivelse}"
+                                                                            <ItemsControl ItemsSource="{Binding Path=Beskrivelse}"
                                                                       FontFamily="Fonts/#Dosis">
-                                                                            <ItemsControl.ItemsPanel>
-                                                                                <ItemsPanelTemplate>
-                                                                                    <WrapPanel Orientation="Horizontal"/>
-                                                                                </ItemsPanelTemplate>
-                                                                            </ItemsControl.ItemsPanel>
-                                                                            <ItemsControl.ItemTemplate>
-                                                                                <DataTemplate>
-                                                                                    <TextBlock Text="{Binding}"/>
-                                                                                </DataTemplate>
-                                                                            </ItemsControl.ItemTemplate>
-                                                                        </ItemsControl>
-                                                                    </StackPanel>
-                                                                    <StackPanel Orientation="Horizontal" 
+                                                                                <ItemsControl.ItemsPanel>
+                                                                                    <ItemsPanelTemplate>
+                                                                                        <WrapPanel Orientation="Horizontal"/>
+                                                                                    </ItemsPanelTemplate>
+                                                                                </ItemsControl.ItemsPanel>
+                                                                                <ItemsControl.ItemTemplate>
+                                                                                    <DataTemplate>
+                                                                                        <TextBlock Text="{Binding}"/>
+                                                                                    </DataTemplate>
+                                                                                </ItemsControl.ItemTemplate>
+                                                                            </ItemsControl>
+                                                                        </StackPanel>
+                                                                        <StackPanel Orientation="Horizontal" 
                                                                 Margin="12 2 0 2">
-                                                                        <TextBlock Text="{Binding Path=Pris, StringFormat='{}{0:C}', ConverterCulture='da-DK'}" 
+                                                                            <TextBlock Text="{Binding Path=Pris, StringFormat='{}{0:C}', ConverterCulture='da-DK'}" 
                                                                    HorizontalAlignment="Left" VerticalAlignment="Bottom" 
                                                                    Margin="0,0,3,0" 
                                                                    FontSize="15"
                                                                    FontFamily="Fonts/#Dosis"/>
+                                                                        </StackPanel>
                                                                     </StackPanel>
-                                                                </StackPanel>
-                                                            </Button>
-                                                        </Border>
-                                                    </DataTemplate>
-                                                </ItemsControl.ItemTemplate>
-                                            </ItemsControl>
-                                        </ScrollViewer>
-                                    </Grid>
+                                                                </Button>
+                                                            </Border>
+                                                        </DataTemplate>
+                                                    </ItemsControl.ItemTemplate>
+                                                </ItemsControl>
+                                            </ScrollViewer>
+                                        </Grid>
+                                    </Border>
                                 </Grid>
+
                             </Border>
 
                             <Grid Grid.Row="4" Grid.ColumnSpan="2" 
@@ -554,7 +559,8 @@
                                         FontFamily="Fonts/#Dosis"
                                         Background="Transparent"
                                         FontSize="15"
-                                        FontWeight="Medium">
+                                        FontWeight="Medium"
+                                        Click="DrikkeSide_Click">
                                     <Button.Style>
                                         <Style TargetType="Button">
                                             <Setter Property="TextElement.FontFamily" Value="Fonts/Dosis"/>
@@ -679,13 +685,15 @@
                                                                                     <RowDefinition />
                                                                                 </Grid.RowDefinitions>
                                                                                 <TextBlock Text="{Binding Navn}" 
-                                                                                       Grid.Column="1" Grid.Row="0" 
+                                                                                       Grid.Column="0" Grid.Row="0" 
+                                                                                       Grid.ColumnSpan="3"
                                                                                        FontSize="12" FontWeight="Bold" 
                                                                                        TextDecorations="Underline" 
                                                                                        FontFamily="Fonts/#Dosis"
                                                                                        HorizontalAlignment="Center"
                                                                                        VerticalAlignment="Top"
-                                                                                       Margin="0 7 0 2"/>
+                                                                                       Margin="0 7 0 2"
+                                                                                       TextWrapping="Wrap"/>
 
                                                                                 <StackPanel Grid.Row="1"
                                                                                         Grid.Column="0" 
@@ -699,56 +707,115 @@
                                                                                            Margin="10 0 10 0"
                                                                                            />
                                                                                 </StackPanel>
-
-
                                                                             </Grid>
                                                                         </Button>
                                                                     </Border>
-
-                                                                    <Grid Grid.Row="1"
-                                                                      Margin="0 0 0 0">
-                                                                        <Grid.ColumnDefinitions>
-                                                                            <ColumnDefinition Width="70"/>
-                                                                            <ColumnDefinition />
-                                                                            <ColumnDefinition />
-                                                                            <ColumnDefinition />
-                                                                            <ColumnDefinition Width="70"/>
-                                                                        </Grid.ColumnDefinitions>
-                                                                        <WrapPanel Orientation="Horizontal" 
-                                                                               Grid.Column="5" 
-                                                                               Margin="0 0 15 5"
+                                                                    <Border Grid.Row="1"
+                                                                            BorderBrush="Black"
+                                                                            BorderThickness="0 1.5 0 0"
+                                                                            Margin="2 4 2 0">
+                                                                        <Grid 
+                                                                            Margin="0 0 0 0">
+                                                                            <Grid.ColumnDefinitions>
+                                                                                <ColumnDefinition Width="70"/>
+                                                                                <ColumnDefinition />
+                                                                                <ColumnDefinition />
+                                                                                <ColumnDefinition />
+                                                                                <ColumnDefinition Width="70"/>
+                                                                            </Grid.ColumnDefinitions>
+                                                                            <WrapPanel Orientation="Horizontal" 
+                                                                               Grid.Column="3" 
+                                                                               Grid.ColumnSpan="2"
+                                                                               HorizontalAlignment="Right"
+                                                                                       Margin="25 0 15 3"
                                                                                VerticalAlignment="Bottom">
-                                                                            <TextBlock Text="{Binding Pris, StringFormat='{}{0:C}', ConverterCulture='da-DK'}" 
+                                                                                <TextBlock Text="{Binding Pris, StringFormat='{}{0:C}', ConverterCulture='da-DK'}" 
                                                                                            TextWrapping="Wrap" 
                                                                                            Margin="2 0 2 0"
+                                                                                           FontFamily="Fonts/#Dosis"
+                                                                                           FontWeight="Medium"/>
+                                                                            </WrapPanel>
+                                                                            <StackPanel Margin="0 0 0 5"
+                                                                                        VerticalAlignment="Bottom"
+                                                                                        HorizontalAlignment="Right"
+                                                                                        Orientation="Horizontal">
+
+                                                                                <TextBlock Text="Antal: " 
+                                                                                           FontWeight="Bold"
                                                                                            FontFamily="Fonts/#Dosis"/>
-                                                                        </WrapPanel>
 
-                                                                        <TextBlock Text="Antal: " 
-                                                                                       FontWeight="Bold"
-                                                                                       Margin="0 0 0 5"
-                                                                                       VerticalAlignment="Bottom"
-                                                                                       HorizontalAlignment="Right"/>
-                                                                        <TextBlock Text="{Binding Antal}" 
-                                                                                       TextWrapping="Wrap" 
-                                                                                       FontFamily="Fonts/#Dosis"
-                                                                                       Margin="0 0 0 5"
-                                                                                       VerticalAlignment="Bottom"
-                                                                                       HorizontalAlignment="Left"
-                                                                                       Grid.Column="1"/>
+                                                                                <TextBlock Text="{Binding Antal}" 
+                                                                                           TextWrapping="Wrap" 
+                                                                                           FontFamily="Fonts/#Dosis"
+                                                                                           Grid.Column="1"/>
+                                                                            </StackPanel>
 
-                                                                        <StackPanel Orientation="Horizontal"
-                                                                                Grid.Column="2"
+
+                                                                            <StackPanel Orientation="Horizontal"
+                                                                                Grid.Column="1"
+                                                                                Grid.ColumnSpan="3"
                                                                                 HorizontalAlignment="Center"
-                                                                                Margin="-3 10 -3 0">
-                                                                            <Button Content="+"  
-                                                                                Click="AddAntal_Click" 
-                                                                                Width="20"/>
-                                                                            <Button Content="-"  
-                                                                                Click="RemoveAntal_Click"
-                                                                                Width="20"/>
-                                                                        </StackPanel>
-                                                                    </Grid>
+                                                                                Margin="0 0 0 0">
+                                                                                <Button Content="+"  
+                                                                                    Click="AddAntal_Click" 
+                                                                                    FontSize="16"
+                                                                                    Width="30"
+                                                                                    FontWeight="Medium"
+                                                                                    BorderBrush="Transparent">
+
+                                                                                    <Button.Style>
+                                                                                        <Style TargetType="Button">
+                                                                                            <Setter Property="TextElement.FontFamily" Value="Fonts/Dosis"/>
+                                                                                            <Setter Property="Background" Value="Transparent"/>
+                                                                                            <Setter Property="Cursor" Value="Hand"/>
+                                                                                            <Style.Triggers>
+                                                                                                <Trigger Property="IsMouseOver" Value="True">
+                                                                                                    <Setter Property="Background" Value="Cyan"/>
+                                                                                                </Trigger>
+                                                                                            </Style.Triggers>
+                                                                                        </Style>
+                                                                                    </Button.Style>
+                                                                                    <Button.Template>
+                                                                                        <ControlTemplate TargetType="Button">
+                                                                                            <Border Background="{TemplateBinding Background}" >
+                                                                                                <ContentPresenter VerticalAlignment="Center"
+                                                                                                                   HorizontalAlignment="Center"/>
+                                                                                            </Border>
+                                                                                        </ControlTemplate>
+                                                                                    </Button.Template>
+                                                                                </Button>
+
+                                                                                <Button Content="-"  
+                                                                                    Click="RemoveAntal_Click"
+                                                                                    Width="30"
+                                                                                    FontSize="16"
+                                                                                    FontWeight="Medium"
+                                                                                    BorderBrush="Transparent">
+
+                                                                                    <Button.Style>
+                                                                                        <Style TargetType="Button">
+                                                                                            <Setter Property="TextElement.FontFamily" Value="Fonts/Dosis"/>
+                                                                                            <Setter Property="Background" Value="Transparent"/>
+                                                                                            <Setter Property="Cursor" Value="Hand"/>
+                                                                                            <Style.Triggers>
+                                                                                                <Trigger Property="IsMouseOver" Value="True">
+                                                                                                    <Setter Property="Background" Value="#FF4C70"/>
+                                                                                                </Trigger>
+                                                                                            </Style.Triggers>
+                                                                                        </Style>
+                                                                                    </Button.Style>
+                                                                                    <Button.Template>
+                                                                                        <ControlTemplate TargetType="Button">
+                                                                                            <Border Background="{TemplateBinding Background}" >
+                                                                                                <ContentPresenter VerticalAlignment="Center"
+                                                                                                                   HorizontalAlignment="Center"/>
+                                                                                            </Border>
+                                                                                        </ControlTemplate>
+                                                                                    </Button.Template>
+                                                                                </Button>
+                                                                            </StackPanel>
+                                                                        </Grid>
+                                                                    </Border>
                                                                 </Grid>
                                                             </Border>
                                                         </DataTemplate>
@@ -854,6 +921,47 @@
                                                        RadiusY="10"
                                                        Rect="0 0 300 180"/>
                                 </Border.Clip>
+                                <Grid Width="300" Height="180" 
+                                      HorizontalAlignment="Left" 
+                                      VerticalAlignment="Top">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="30"/>
+                                        <RowDefinition/>
+                                    </Grid.RowDefinitions>
+
+                                    <TextBlock Text="1.5L Drikkevare"
+                                               Foreground="White"
+                                               FontSize="15"
+                                               FontWeight="Medium"
+                                               FontFamily="Fonts/#Dosis" 
+                                               Margin="10 0 0 0"
+                                               VerticalAlignment="Center"/>
+
+                                    <Grid Grid.Row="1">
+                                        <Border 
+                                                Margin="6 0 6 6">
+                                            <ScrollViewer VerticalScrollBarVisibility="Hidden">
+                                                <ItemsControl ItemsSource="{Binding _LocalDrik}">
+                                                    <ItemsControl.ItemTemplate>
+                                                        <DataTemplate>
+                                                            <Border Background="White"
+                                                                    BorderThickness="1">
+                                                                <Button Background="Transparent" 
+                                                                        Click="Drik_Click" >
+                                                                    <StackPanel Orientation="Horizontal">
+                                                                        <TextBlock Text="{Binding Navn}" 
+                                                                               MinWidth="200"/>
+                                                                        <TextBlock Text="{Binding Path=Pris, StringFormat='{}{0:C}', ConverterCulture='da-DK'}"/>
+                                                                    </StackPanel>
+                                                                </Button>
+                                                            </Border>
+                                                        </DataTemplate>
+                                                    </ItemsControl.ItemTemplate>
+                                                </ItemsControl>
+                                            </ScrollViewer>
+                                        </Border>
+                                    </Grid>
+                                </Grid>
                             </Border>
 
                             <Border Grid.Row="2"
@@ -872,6 +980,47 @@
                                                        RadiusY="10"
                                                        Rect="0 0 300 180"/>
                                 </Border.Clip>
+                                <Grid Width="300" Height="180" 
+                                      HorizontalAlignment="Left" 
+                                      VerticalAlignment="Top">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="30"/>
+                                        <RowDefinition/>
+                                    </Grid.RowDefinitions>
+
+                                    <TextBlock Text="0.5L Drikkevare"
+                                               Foreground="White"
+                                               FontSize="15"
+                                               FontWeight="Medium"
+                                               FontFamily="Fonts/#Dosis" 
+                                               Margin="10 0 0 0"
+                                               VerticalAlignment="Center"/>
+
+                                    <Grid Grid.Row="1">
+                                        <Border 
+                                                Margin="6 0 6 6">
+                                            <ScrollViewer VerticalScrollBarVisibility="Hidden">
+                                                <ItemsControl ItemsSource="{Binding _LocalDrikHalv}">
+                                                    <ItemsControl.ItemTemplate>
+                                                        <DataTemplate>
+                                                            <Border Background="White"
+                                                                    BorderThickness="1">
+                                                                <Button Background="Transparent" 
+                                                                        Click="DrikHalv_Click" >
+                                                                    <StackPanel Orientation="Horizontal">
+                                                                        <TextBlock Text="{Binding Navn}" 
+                                                                               MinWidth="200"/>
+                                                                        <TextBlock Text="{Binding Path=Pris, StringFormat='{}{0:C}', ConverterCulture='da-DK'}"/>
+                                                                    </StackPanel>
+                                                                </Button>
+                                                            </Border>
+                                                        </DataTemplate>
+                                                    </ItemsControl.ItemTemplate>
+                                                </ItemsControl>
+                                            </ScrollViewer>
+                                        </Border>
+                                    </Grid>
+                                </Grid>
                             </Border>
 
 
@@ -892,6 +1041,47 @@
                                                        RadiusY="10"
                                                        Rect="0 0 250 310"/>
                                 </Border.Clip>
+                                <Grid Width="250" Height="310" 
+                                      HorizontalAlignment="Left" 
+                                      VerticalAlignment="Top">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="30"/>
+                                        <RowDefinition/>
+                                    </Grid.RowDefinitions>
+
+                                    <TextBlock Text="Andre Drikkevare"
+                                               Foreground="Black"
+                                               FontSize="15"
+                                               FontWeight="Medium"
+                                               FontFamily="Fonts/#Dosis" 
+                                               Margin="10 0 0 0"
+                                               VerticalAlignment="Center"/>
+
+                                    <Grid Grid.Row="1">
+                                        <Border 
+                                                Margin="6 0 6 6">
+                                            <ScrollViewer VerticalScrollBarVisibility="Hidden">
+                                                <ItemsControl ItemsSource="{Binding _LocalDrikAndet}">
+                                                    <ItemsControl.ItemTemplate>
+                                                        <DataTemplate>
+                                                            <Border Background="White"
+                                                                    BorderThickness="1">
+                                                                <Button Background="Transparent" 
+                                                                        Click="DrikAndet_Click" >
+                                                                    <StackPanel Orientation="Horizontal">
+                                                                        <TextBlock Text="{Binding Navn}" 
+                                                                               MinWidth="170"/>
+                                                                        <TextBlock Text="{Binding Path=Pris, StringFormat='{}{0:C}', ConverterCulture='da-DK'}"/>
+                                                                    </StackPanel>
+                                                                </Button>
+                                                            </Border>
+                                                        </DataTemplate>
+                                                    </ItemsControl.ItemTemplate>
+                                                </ItemsControl>
+                                            </ScrollViewer>
+                                        </Border>
+                                    </Grid>
+                                </Grid>
                             </Border>
 
                             <Border Grid.Column="3"
@@ -995,13 +1185,15 @@
                                                                                     <RowDefinition />
                                                                                 </Grid.RowDefinitions>
                                                                                 <TextBlock Text="{Binding Navn}" 
-                                                                                       Grid.Column="1" Grid.Row="0" 
+                                                                                       Grid.Column="0" Grid.Row="0" 
+                                                                                       Grid.ColumnSpan="3"
                                                                                        FontSize="12" FontWeight="Bold" 
                                                                                        TextDecorations="Underline" 
                                                                                        FontFamily="Fonts/#Dosis"
                                                                                        HorizontalAlignment="Center"
                                                                                        VerticalAlignment="Top"
-                                                                                       Margin="0 7 0 2"/>
+                                                                                       Margin="0 7 0 2"
+                                                                                       TextWrapping="Wrap"/>
 
                                                                                 <StackPanel Grid.Row="1"
                                                                                         Grid.Column="0" 
@@ -1021,50 +1213,112 @@
                                                                         </Button>
                                                                     </Border>
 
-                                                                    <Grid Grid.Row="1"
-                                                                      Margin="0 0 0 0">
-                                                                        <Grid.ColumnDefinitions>
-                                                                            <ColumnDefinition Width="70"/>
-                                                                            <ColumnDefinition />
-                                                                            <ColumnDefinition />
-                                                                            <ColumnDefinition />
-                                                                            <ColumnDefinition Width="70"/>
-                                                                        </Grid.ColumnDefinitions>
-                                                                        <WrapPanel Orientation="Horizontal" 
-                                                                               Grid.Column="5" 
-                                                                               Margin="0 0 15 5"
+                                                                    <Border Grid.Row="1"
+                                                                            BorderBrush="Black"
+                                                                            BorderThickness="0 1.5 0 0"
+                                                                            Margin="2 4 2 0">
+                                                                        <Grid 
+                                                                            Margin="0 0 0 0">
+                                                                            <Grid.ColumnDefinitions>
+                                                                                <ColumnDefinition Width="70"/>
+                                                                                <ColumnDefinition />
+                                                                                <ColumnDefinition />
+                                                                                <ColumnDefinition />
+                                                                                <ColumnDefinition Width="70"/>
+                                                                            </Grid.ColumnDefinitions>
+                                                                            <WrapPanel Orientation="Horizontal" 
+                                                                               Grid.Column="3" 
+                                                                               Grid.ColumnSpan="2"
+                                                                               HorizontalAlignment="Right"
+                                                                                       Margin="25 0 15 3"
                                                                                VerticalAlignment="Bottom">
-                                                                            <TextBlock Text="{Binding Pris, StringFormat='{}{0:C}', ConverterCulture='da-DK'}" 
+                                                                                <TextBlock Text="{Binding Pris, StringFormat='{}{0:C}', ConverterCulture='da-DK'}" 
                                                                                            TextWrapping="Wrap" 
                                                                                            Margin="2 0 2 0"
+                                                                                           FontFamily="Fonts/#Dosis"
+                                                                                           FontWeight="Medium"/>
+                                                                            </WrapPanel>
+                                                                            <StackPanel Margin="0 0 0 5"
+                                                                                        VerticalAlignment="Bottom"
+                                                                                        HorizontalAlignment="Right"
+                                                                                        Orientation="Horizontal">
+
+                                                                                <TextBlock Text="Antal: " 
+                                                                                           FontWeight="Bold"
                                                                                            FontFamily="Fonts/#Dosis"/>
-                                                                        </WrapPanel>
 
-                                                                        <TextBlock Text="Antal: " 
-                                                                                       FontWeight="Bold"
-                                                                                       Margin="0 0 0 5"
-                                                                                       VerticalAlignment="Bottom"
-                                                                                       HorizontalAlignment="Right"/>
-                                                                        <TextBlock Text="{Binding Antal}" 
-                                                                                       TextWrapping="Wrap" 
-                                                                                       FontFamily="Fonts/#Dosis"
-                                                                                       Margin="0 0 0 5"
-                                                                                       VerticalAlignment="Bottom"
-                                                                                       HorizontalAlignment="Left"
-                                                                                       Grid.Column="1"/>
+                                                                                <TextBlock Text="{Binding Antal}" 
+                                                                                           TextWrapping="Wrap" 
+                                                                                           FontFamily="Fonts/#Dosis"
+                                                                                           Grid.Column="1"/>
+                                                                            </StackPanel>
 
-                                                                        <StackPanel Orientation="Horizontal"
-                                                                                Grid.Column="2"
+
+                                                                            <StackPanel Orientation="Horizontal"
+                                                                                Grid.Column="1"
+                                                                                Grid.ColumnSpan="3"
                                                                                 HorizontalAlignment="Center"
-                                                                                Margin="-3 10 -3 0">
-                                                                            <Button Content="+"  
-                                                                                Click="AddAntal_Click" 
-                                                                                Width="20"/>
-                                                                            <Button Content="-"  
-                                                                                Click="RemoveAntal_Click"
-                                                                                Width="20"/>
-                                                                        </StackPanel>
-                                                                    </Grid>
+                                                                                Margin="0 0 0 0">
+                                                                                <Button Content="+"  
+                                                                                    Click="AddAntal_Click" 
+                                                                                    FontSize="16"
+                                                                                    Width="30"
+                                                                                    FontWeight="Medium"
+                                                                                    BorderBrush="Transparent">
+
+                                                                                    <Button.Style>
+                                                                                        <Style TargetType="Button">
+                                                                                            <Setter Property="TextElement.FontFamily" Value="Fonts/Dosis"/>
+                                                                                            <Setter Property="Background" Value="Transparent"/>
+                                                                                            <Setter Property="Cursor" Value="Hand"/>
+                                                                                            <Style.Triggers>
+                                                                                                <Trigger Property="IsMouseOver" Value="True">
+                                                                                                    <Setter Property="Background" Value="Cyan"/>
+                                                                                                </Trigger>
+                                                                                            </Style.Triggers>
+                                                                                        </Style>
+                                                                                    </Button.Style>
+                                                                                    <Button.Template>
+                                                                                        <ControlTemplate TargetType="Button">
+                                                                                            <Border Background="{TemplateBinding Background}" >
+                                                                                                <ContentPresenter VerticalAlignment="Center"
+                                                                                                                   HorizontalAlignment="Center"/>
+                                                                                            </Border>
+                                                                                        </ControlTemplate>
+                                                                                    </Button.Template>
+                                                                                </Button>
+
+                                                                                <Button Content="-"  
+                                                                                    Click="RemoveAntal_Click"
+                                                                                    Width="30"
+                                                                                    FontSize="16"
+                                                                                    FontWeight="Medium"
+                                                                                    BorderBrush="Transparent">
+
+                                                                                    <Button.Style>
+                                                                                        <Style TargetType="Button">
+                                                                                            <Setter Property="TextElement.FontFamily" Value="Fonts/Dosis"/>
+                                                                                            <Setter Property="Background" Value="Transparent"/>
+                                                                                            <Setter Property="Cursor" Value="Hand"/>
+                                                                                            <Style.Triggers>
+                                                                                                <Trigger Property="IsMouseOver" Value="True">
+                                                                                                    <Setter Property="Background" Value="#FF4C70"/>
+                                                                                                </Trigger>
+                                                                                            </Style.Triggers>
+                                                                                        </Style>
+                                                                                    </Button.Style>
+                                                                                    <Button.Template>
+                                                                                        <ControlTemplate TargetType="Button">
+                                                                                            <Border Background="{TemplateBinding Background}" >
+                                                                                                <ContentPresenter VerticalAlignment="Center"
+                                                                                                                   HorizontalAlignment="Center"/>
+                                                                                            </Border>
+                                                                                        </ControlTemplate>
+                                                                                    </Button.Template>
+                                                                                </Button>
+                                                                            </StackPanel>
+                                                                        </Grid>
+                                                                    </Border>
                                                                 </Grid>
                                                             </Border>
                                                         </DataTemplate>

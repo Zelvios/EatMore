@@ -170,7 +170,7 @@ namespace EatMore
             toppingsliste = new ObservableCollection<Top>();
             int dalTopIDS = 0;
 
-            toppingsliste.Add(new Top(dalTopIDS++, "Tomatsouce", 10.00));  //0
+            toppingsliste.Add(new Top(dalTopIDS++, "Tomatsauce", 00.00));  //0
             toppingsliste.Add(new Top(dalTopIDS++, "Mozzarella ost", 15.00)); //1
             toppingsliste.Add(new Top(dalTopIDS++, "Champignon", 10.00));  //2
             toppingsliste.Add(new Top(dalTopIDS++, "Paprika", 10.00)); //3
@@ -211,7 +211,9 @@ namespace EatMore
             toppingsliste.Add(new Top(dalTopIDS++, "Falafel", 15.00)); //38
             toppingsliste.Add(new Top(dalTopIDS++, "Dressing", 15.00)); //39
             toppingsliste.Add(new Top(dalTopIDS++, "Guld", 99999.00)); //40
-            
+
+            var saveFileTop = JsonConvert.SerializeObject(toppingsliste, Formatting.Indented);
+            File.WriteAllText("Tops.json", saveFileTop);
 
 
             //Pizza Menu

@@ -5,126 +5,437 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:EatMore"
         mc:Ignorable="d"
-        Title="Din Pizza" Height="450" Width="800"
+        Title="Din Pizza" Height="550" Width="600"
+        Background="Transparent"
         WindowStartupLocation="CenterScreen"
-        ResizeMode="NoResize">
-    <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
-        </Grid.ColumnDefinitions>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="60" />
-            <RowDefinition Height="60" />
-            <RowDefinition/>
-            <RowDefinition Height="40" />
-            <RowDefinition Height="90" />
-        </Grid.RowDefinitions>
-        <Image Source="pizza.jpg" Grid.Row="0" Grid.Column="0" Grid.RowSpan="2" Grid.ColumnSpan="3" Stretch="UniformToFill" />
-        <TextBlock Text="Din Pizza" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="10" Grid.Row="0" Grid.Column="0" FontSize="17" FontWeight="Bold" Foreground="White"/>
+        ResizeMode="NoResize"
+        WindowStyle="None"
+        MouseDown="Window_MouseDown"
+        AllowsTransparency="True">
+
+    <Border >
+
+        <Border.Clip>
+            <RectangleGeometry RadiusX="30"
+                               RadiusY="30"
+                               Rect="0,0,600,550"/>
+        </Border.Clip>
+
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="35"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+
+            <Grid Background="#3A4149"
+                      Grid.ColumnSpan="3"
+                      Panel.ZIndex="2"
+                      Opacity="1">
+
+                <StackPanel Orientation="Horizontal" 
+                         
+                        Grid.ColumnSpan="2"
+                        HorizontalAlignment="Right"
+                        Margin="0 0 0 0"
+                        >
+
+                    <Button x:Name="WindowMinimize" 
+                         BorderThickness="0"
+                        Foreground="White"
+                        Content="-"
+                        FontSize="16"
+                        Cursor="Hand"
+                        Grid.Column="12"
+                        Width="50"
+                        Click="WindowMinimize_Click">
+
+                        <Button.Style>
+                            <Style TargetType="Button">
+                                <Setter Property="TextElement.FontFamily" Value="Fonts/Dosis"/>
+                                <Setter Property="Background" Value="#383660"/>
+                                <Setter Property="Cursor" Value="Hand"/>
+                                <Style.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter Property="Background" Value="LightBlue"/>
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Button.Style>
+                        <Button.Template>
+                            <ControlTemplate TargetType="Button">
+                                <Border Background="{TemplateBinding Background}"
+                                        CornerRadius="10 0 0 10">
+                                    <ContentPresenter VerticalAlignment="Center"
+                                                      HorizontalAlignment="Center"/>
+                                </Border>
+                            </ControlTemplate>
+                        </Button.Template>
+                    </Button>
 
 
-        <!-- TILBEHØR og neden under   -->
-        <Label Content="Ekstra Tilbehør" VerticalAlignment="Bottom" HorizontalAlignment="Center" Grid.Row="1" Grid.Column="0" FontSize="16" FontWeight="Bold" Foreground="white" />
-        <Grid Grid.Row="2" Grid.Column="0" Grid.RowSpan="3">
-            <Border BorderBrush="Black" BorderThickness="2">
-                <ScrollViewer VerticalScrollBarVisibility="Hidden">
-                    <ItemsControl ItemsSource="{Binding top}">
-                        <ItemsControl.ItemTemplate>
-                            <DataTemplate>
-                                <Button Click="Tilføj_Tilbe">
-                                    <StackPanel Orientation="Horizontal" >
-                                        <TextBlock Text="{Binding Path=Navn}" MinWidth="185"/>
-                                        <TextBlock Text="{Binding Path=pris, StringFormat='{}{0:C}', ConverterCulture='da-DK'}" MinWidth="30"/>
-                                    </StackPanel>
+
+                    <Button x:Name="WindowClose" 
+                        BorderThickness="0"
+                        Margin="0"
+                        Foreground="White"
+                        Content="X"
+                        FontSize="16"
+                        Cursor="Hand"
+                        Width="50"
+                        Click="WindowClose_Click">
+
+                        <Button.Style>
+                            <Style TargetType="Button">
+                                <Setter Property="TextElement.FontFamily" Value="Fonts/Dosis"/>
+                                <Setter Property="Background" Value="#383660"/>
+                                <Setter Property="Cursor" Value="Hand"/>
+                                <Style.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter Property="Background" Value="#FF4C70"/>
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Button.Style>
+                        <Button.Template>
+                            <ControlTemplate TargetType="Button">
+                                <Border Background="{TemplateBinding Background}">
+
+                                    <ContentPresenter VerticalAlignment="Center"
+                                                      HorizontalAlignment="Center"/>
+                                </Border>
+                            </ControlTemplate>
+                        </Button.Template>
+
+                    </Button>
+
+                </StackPanel>
+
+
+            </Grid>
+            <Border Grid.Row="1">
+
+                <Border.Background>
+                    <ImageBrush ImageSource="pizza.jpg"
+                        Stretch="UniformToFill"/>
+                </Border.Background>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+
+
+
+                    <Border Grid.ColumnSpan="3"
+                            Grid.RowSpan="6"
+                            Opacity="0.85">
+                        <Border.Background>
+                            <LinearGradientBrush StartPoint="0,1" EndPoint="1,0">
+                                <GradientStop Color="Black" Offset="0.1"/>
+                                <GradientStop Color="#FF5733" Offset="1.2"/>
+                            </LinearGradientBrush>
+                        </Border.Background>
+                    </Border>
+                    <Border Grid.Row="2"
+                            Grid.RowSpan="2"
+                            Grid.Column="3">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                            </Grid.RowDefinitions>
+
+
+                            <StackPanel Grid.Row="0" 
+                                       Grid.Column="0" 
+                                       Grid.ColumnSpan="2"  
+                                       VerticalAlignment="Bottom" 
+                                       HorizontalAlignment="Center" 
+                                        Orientation="Horizontal">
+                                <TextBlock Text="Pris per. Pizza: "
+                                           Foreground="White"
+                                           FontFamily="Fonts/#Dosis"
+                                           FontWeight="Medium"
+                                           FontSize="15"
+                                           Margin="10 0 5 0"/>
+                                <TextBlock Text="{Binding realpris, StringFormat='{}{0:C}', ConverterCulture='da-DK'}" 
+                                       Foreground="White"
+                                       FontFamily="Fonts/#Dosis"
+                                       FontWeight="Medium"
+                                       FontSize="15" />
+                            </StackPanel>
+
+
+                            <TextBlock Text="{Binding ManglerTop}" 
+                                       Grid.Row="1" 
+                                       Grid.Column="0" 
+                                       Grid.ColumnSpan="2"
+                                       Margin="20 0 0 15"
+                                       TextWrapping="Wrap"
+                                       VerticalAlignment="Center" 
+                                       HorizontalAlignment="Center"
+                                       Foreground="White"
+                                       FontFamily="Fonts/#Dosis"
+                                       FontWeight="Medium"
+                                       FontSize="13" />
+
+                            <Border Grid.Column="0"  
+                                    Grid.ColumnSpan="2"
+                                    Grid.Row="1"
+                                    VerticalAlignment="Bottom"
+                                    HorizontalAlignment="Center"
+                                    Margin="30 0 30 0"
+                                    Width="80">
+                                <Button Content="Tilføj Pizza" 
+                                    Height="20"
+                                    FontFamily="Fonts/#Dosis"
+                                    FontSize="12"
+                                    Click="AddPizza">
+                                    <Button.Style>
+                                        <Style TargetType="Button">
+                                            <Setter Property="TextElement.FontFamily" Value="Fonts/Dosis"/>
+                                            <Setter Property="Background" Value="White"/>
+                                            <Setter Property="Cursor" Value="Hand"/>
+                                            <Style.Triggers>
+                                                <Trigger Property="IsMouseOver" Value="True">
+                                                    <Setter Property="Background" Value="LightGreen"/>
+                                                </Trigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </Button.Style>
+                                    <Button.Template>
+                                        <ControlTemplate TargetType="Button">
+                                            <Border Background="{TemplateBinding Background}"
+                                                                CornerRadius="10 10 10 10">
+
+                                                <ContentPresenter VerticalAlignment="Center"
+                                                      HorizontalAlignment="Center"/>
+                                            </Border>
+                                        </ControlTemplate>
+                                    </Button.Template>
                                 </Button>
-                            </DataTemplate>
-                        </ItemsControl.ItemTemplate>
-                    </ItemsControl>
-                </ScrollViewer>
+                            </Border>
+
+
+                            <Border Grid.Column="0"  
+                                    Grid.ColumnSpan="2"
+                                    Grid.Row="2"
+                                    VerticalAlignment="Top"
+                                    HorizontalAlignment="Center"
+                                    Margin="30 5 30 0"
+                                    Width="80">
+
+                                <Button Content="Tilbage" 
+                                    Height="20"
+                                    Click="FjernPizza" 
+                                    FontFamily="Fonts/#Dosis"
+                                    FontSize="12">
+                                    <Button.Style>
+                                        <Style TargetType="Button">
+                                            <Setter Property="TextElement.FontFamily" Value="Fonts/Dosis"/>
+                                            <Setter Property="Background" Value="White"/>
+                                            <Setter Property="Cursor" Value="Hand"/>
+                                            <Style.Triggers>
+                                                <Trigger Property="IsMouseOver" Value="True">
+                                                    <Setter Property="Background" Value="#FF4C70"/>
+                                                </Trigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </Button.Style>
+                                    <Button.Template>
+                                        <ControlTemplate TargetType="Button">
+                                            <Border Background="{TemplateBinding Background}"
+                                                                CornerRadius="10 10 10 10">
+
+                                                <ContentPresenter VerticalAlignment="Center"
+                                                      HorizontalAlignment="Center"/>
+                                            </Border>
+                                        </ControlTemplate>
+                                    </Button.Template>
+                                </Button>
+                            </Border>
+
+                        </Grid>
+
+
+                    </Border>
+                    <Border Grid.Column="0"
+                            Grid.RowSpan="4"
+                            Margin="20 40 0 0"
+                            Grid.ColumnSpan="3" >
+                        <Border.Background>
+                            <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                                <GradientStop Color="#383660" Offset="0.1"/>
+                                <GradientStop Color="#383660" Offset="0.5"/>
+                                <GradientStop Color="Black" Offset="0.4"/>
+                                <GradientStop Color="#383660" Offset="1"/>
+                            </LinearGradientBrush>
+                        </Border.Background>
+                        <Border.Clip>
+                            <RectangleGeometry RadiusX="20"
+                                               RadiusY="20"
+                                               Rect="0 0 400 200"/>
+                        </Border.Clip>
+                        <Grid HorizontalAlignment="Left"
+                              Width="400"
+                              Height="200"
+                              VerticalAlignment="Top">
+
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                            </Grid.RowDefinitions>
+                            <TextBlock Text="Din Pizza"
+                                       Foreground="White"
+                                       FontFamily="Fonts/#Dosis"
+                                       FontWeight="Medium"
+                                       FontSize="15"
+                                       VerticalAlignment="Bottom"
+                                       Margin="10 0 0 2"/>
+                            <StackPanel Margin="80 0 0 0"
+                                        Orientation="Horizontal"
+                                        Grid.Column="0"
+                                        Grid.ColumnSpan="2"
+                                        HorizontalAlignment="Left"
+                                        VerticalAlignment="Bottom">
+                                <TextBlock Text="{Binding EditPizza.Nummer}"
+                                           Margin="0 0 0 2"
+                                           Foreground="Gray"
+                                           FontFamily="Fonts/#Dosis"
+                                           FontSize="14"
+                                           FontStyle="Italic"/>
+                                <TextBlock Text="{Binding EditPizza.Navn}"
+                                           Margin="5 0 0 2"
+                                           Foreground="Gray"
+                                           FontFamily="Fonts/#Dosis"
+                                           FontSize="14"
+                                           FontStyle="Italic"/>
+                            </StackPanel>
+
+
+
+                            <ScrollViewer Grid.Row="1" 
+                                          Grid.ColumnSpan="3"
+                                          Grid.RowSpan="3"
+                                          VerticalScrollBarVisibility="Hidden">
+                                <ItemsControl Margin="0" 
+                                              ItemsSource="{Binding EditPizza.Top}">
+                                    <ItemsControl.ItemTemplate>
+                                        <DataTemplate>
+                                            <Button Click="Fjern_Tilbe"
+                                                    Background="White"
+                                                    Margin="10 0 10 0">
+                                                <Grid>
+                                                    <StackPanel Orientation="Horizontal">
+                                                        <TextBlock Text="{Binding Navn}" 
+                                                                       MinWidth="185"/>
+                                                        <TextBlock Text="{Binding pris, StringFormat='{}{0:C}', ConverterCulture='da-DK'}" 
+                                                                       MinWidth="30"/>
+                                                    </StackPanel>
+                                                </Grid>
+                                            </Button>
+                                        </DataTemplate>
+                                    </ItemsControl.ItemTemplate>
+                                </ItemsControl>
+                            </ScrollViewer>
+                        </Grid>
+                    </Border>
+
+
+                    <Border Grid.Column="0"
+                            Grid.Row="3"
+                            Grid.RowSpan="4"
+                            Margin="20 20 0 0"
+                            Grid.ColumnSpan="3">
+                        <Border.Background>
+                            <LinearGradientBrush StartPoint="0,1" EndPoint="1,0">
+                                <GradientStop Color="#383660" Offset="0.1"/>
+                                <GradientStop Color="#383660" Offset="0.5"/>
+                                <GradientStop Color="Black" Offset="0.4"/>
+                                <GradientStop Color="#383660" Offset="1"/>
+                            </LinearGradientBrush>
+                        </Border.Background>
+                        <Border.Clip>
+                            <RectangleGeometry RadiusX="20"
+                                               RadiusY="20"
+                                               Rect="0 0 400 200"/>
+                        </Border.Clip>
+                        <Grid HorizontalAlignment="Left"
+                              Width="400"
+                              Height="200"
+                              VerticalAlignment="Top"
+                              Margin="0 0 20 0">
+
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                            </Grid.RowDefinitions>
+                            <TextBlock Text="Ekstra Tilbehør"
+                                       Foreground="White"
+                                       FontFamily="Fonts/#Dosis"
+                                       FontWeight="Medium"
+                                       FontSize="15"
+                                       VerticalAlignment="Bottom"
+                                       Margin="10 0 0 2"/>
+                            <Grid Grid.Row="1" Grid.ColumnSpan="3" Grid.RowSpan="3">
+                                <Border>
+                                    <ScrollViewer VerticalScrollBarVisibility="Hidden">
+                                        <ItemsControl ItemsSource="{Binding top}">
+                                            <ItemsControl.ItemTemplate>
+                                                <DataTemplate>
+                                                    <Button Click="Tilføj_Tilbe"
+                                                            Background="White"
+                                                            Margin="10 0 10 0">
+                                                        <StackPanel Orientation="Horizontal" >
+                                                            <TextBlock Text="{Binding Path=Navn}" 
+                                                                       MinWidth="185"/>
+                                                            <TextBlock Text="{Binding Path=pris, StringFormat='{}{0:C}', ConverterCulture='da-DK'}" 
+                                                                       MinWidth="30"/>
+                                                        </StackPanel>
+                                                    </Button>
+                                                </DataTemplate>
+                                            </ItemsControl.ItemTemplate>
+                                        </ItemsControl>
+                                    </ScrollViewer>
+                                </Border>
+                            </Grid>
+                        </Grid>
+                    </Border>
+                </Grid>
             </Border>
         </Grid>
-
-
-
-
-        <!-- MIDTEN neden under   -->
-
-
-        <Border BorderThickness="1" BorderBrush="Black" Grid.Row="2" Grid.Column="1" Grid.RowSpan="4">
-            <Grid>
-
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="1*" />
-                    <ColumnDefinition Width="1*" />
-                    <ColumnDefinition Width="1*" />
-                    <ColumnDefinition Width="1*" />
-                </Grid.ColumnDefinitions>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="1*" />
-                    <RowDefinition Height="1*" />
-                    <RowDefinition Height="1*" />
-                    <RowDefinition Height="1*" />
-                    <RowDefinition Height="1*" />
-                    <RowDefinition Height="1*" />
-                </Grid.RowDefinitions>
-
-
-                <Button Content="Tilføj Pizza" Grid.Column="1" Grid.Row="2" Grid.ColumnSpan="2" Margin="20 0 20 20" Click="AddPizza" />
-                <TextBlock Text="{Binding realpris, StringFormat='{}{0:C}', ConverterCulture='da-DK'}" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2"  VerticalAlignment="Bottom" HorizontalAlignment="Center" Foreground="Black" Background="White"/>
-                <TextBlock Text="{Binding ManglerTop}" Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="4" VerticalAlignment="Top" HorizontalAlignment="Center"/>
-
-
-                <Button Content="Anullere" Grid.Column="1" Grid.Row="4" Grid.ColumnSpan="2" VerticalAlignment="Bottom" Margin="30 0 30 0" Height="20" Click="FjernPizza" />
-            </Grid>
-        </Border>
-
-
-
-        <!-- DIN PIZZA og neden under   -->
-        <Label Content="Din Pizza" VerticalAlignment="Bottom" HorizontalAlignment="Center" Grid.Row="1" Grid.Column="2" FontSize="16" FontWeight="Bold" Foreground="White" />
-
-
-        <Rectangle Grid.Column="2" Grid.Row="2" Grid.RowSpan="4" Stroke="Black" StrokeThickness="2" Fill="White" />
-        <Grid Grid.Row="2" Grid.Column="3" Margin="0" Grid.RowSpan="3">
-
-            <Grid.RowDefinitions>
-                <RowDefinition Height="17"/>
-                <RowDefinition Height="17"/>
-                <RowDefinition Height="17"/>
-                <RowDefinition Height="1*"/>
-            </Grid.RowDefinitions>
-
-            <StackPanel Orientation="Horizontal" Margin="3 0 0 0">
-                <TextBlock Text="Pizza: " FontSize="12" FontWeight="Bold"/>
-                <TextBlock Text="{Binding EditPizza.Nummer}" Margin="2 0 3 0"/>
-                <TextBlock Text="{Binding EditPizza.Navn}"/>
-            </StackPanel>
-
-            <StackPanel Orientation="Horizontal" Grid.Row="2" Margin="3 0 0 0" >
-                <TextBlock Text="Tilbehør:" Grid.Row="2" FontSize="13" FontWeight="Bold"/>
-            </StackPanel>
-
-
-            <ScrollViewer Grid.Row="3" VerticalScrollBarVisibility="Hidden">
-                <ItemsControl Margin="0" ItemsSource="{Binding EditPizza.Top}">
-                    <ItemsControl.ItemTemplate>
-                        <DataTemplate>
-                            <Button Click="Fjern_Tilbe">
-                                <Grid>
-                                    <StackPanel Orientation="Horizontal">
-                                        <TextBlock Text="{Binding Navn}" MinWidth="185"/>
-                                        <TextBlock Text="{Binding pris, StringFormat='{}{0:C}', ConverterCulture='da-DK'}" MinWidth="30"/>
-                                    </StackPanel>
-                                </Grid>
-                            </Button>
-                        </DataTemplate>
-                    </ItemsControl.ItemTemplate>
-                </ItemsControl>
-            </ScrollViewer>
-        </Grid>
-    </Grid>
+    </Border>
 </Window>
 
     

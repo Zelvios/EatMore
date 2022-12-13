@@ -92,6 +92,21 @@ namespace EatMore
             this.Close();
         }
 
+        private void Window_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            if (e.LeftButton == MouseButtonState.Pressed)
+                DragMove();
+        }
+        private void WindowClose_Click(object sender, RoutedEventArgs e)
+        {
+            Close();
+        }
+
+        private void WindowMinimize_Click(object sender, RoutedEventArgs e)
+        {
+            this.WindowState = WindowState.Minimized;
+        }
+
 
         //private void AntalTil_Click(object sender, RoutedEventArgs e)
         //{
