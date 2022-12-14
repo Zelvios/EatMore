@@ -66,8 +66,7 @@
                         </Button.Style>
                         <Button.Template>
                             <ControlTemplate TargetType="Button">
-                                <Border Background="{TemplateBinding Background}"
-                                        CornerRadius="10 0 0 10">
+                                <Border Background="{TemplateBinding Background}">
                                     <ContentPresenter VerticalAlignment="Center"
                                                       HorizontalAlignment="Center"/>
                                 </Border>
@@ -168,7 +167,7 @@
                                        Grid.ColumnSpan="2"  
                                        VerticalAlignment="Bottom" 
                                        HorizontalAlignment="Center" 
-                                        Orientation="Horizontal">
+                                       Orientation="Horizontal">
                                 <TextBlock Text="Pris per. Pizza: "
                                            Foreground="White"
                                            FontFamily="Fonts/#Dosis"
