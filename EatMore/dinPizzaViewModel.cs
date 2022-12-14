@@ -64,12 +64,14 @@ namespace EatMore
         public dinPizzaViewModel(Pizza pizza)
         {
             _pizza = pizza;
+            if (_pizza.Pris == 40)
+            {
                 foreach (Top top in _pizza.Top)
                 {
                     realpris += top.pris;
 
                 }
-            
+            }
 
 
             Antal = _pizza.Antal;

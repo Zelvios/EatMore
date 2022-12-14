@@ -46,7 +46,7 @@ namespace EatMore
         // ---------------------------------------------------------------------------------------------------------------------------------------------------
         public DAL()
         {
-            //JsonStart();
+            
             _toppingsliste = new ObservableCollection<Top>();
             string fileloadTop = File.ReadAllText("tops.json");
             var FLT = JsonConvert.DeserializeObject<ObservableCollection<Top>>(fileloadTop);
@@ -170,7 +170,7 @@ namespace EatMore
             toppingsliste = new ObservableCollection<Top>();
             int dalTopIDS = 0;
 
-            toppingsliste.Add(new Top(dalTopIDS++, "Tomatsauce", 5.00));  //0
+            toppingsliste.Add(new Top(dalTopIDS++, "Tomatsauce", 00.00));  //0
             toppingsliste.Add(new Top(dalTopIDS++, "Mozzarella ost", 15.00)); //1
             toppingsliste.Add(new Top(dalTopIDS++, "Champignon", 10.00));  //2
             toppingsliste.Add(new Top(dalTopIDS++, "Paprika", 10.00)); //3
@@ -210,9 +210,10 @@ namespace EatMore
             toppingsliste.Add(new Top(dalTopIDS++, "Pesto", 15.00)); //37
             toppingsliste.Add(new Top(dalTopIDS++, "Falafel", 15.00)); //38
             toppingsliste.Add(new Top(dalTopIDS++, "Dressing", 15.00)); //39
+            toppingsliste.Add(new Top(dalTopIDS++, "Guld", 99999.00)); //40
 
             var saveFileTop = JsonConvert.SerializeObject(toppingsliste, Formatting.Indented);
-            File.WriteAllText("tops.json", saveFileTop);
+            File.WriteAllText("Tops.json", saveFileTop);
 
 
             //Pizza Menu
@@ -232,7 +233,6 @@ namespace EatMore
             DataBasePizza.Add(new Pizza(MenuID++, MenuNummer++, "Sadig", new ObservableCollection<Top>() { toppingsliste[0], toppingsliste[1], toppingsliste[20], toppingsliste[22], toppingsliste[3], toppingsliste[39] }, BasePrisPizza, 1, 0));
 
             DataBasePizza.Add(new Pizza(MenuID++, MenuNummer++, "Be a Man", new ObservableCollection<Top>() { toppingsliste[0], toppingsliste[1], toppingsliste[20], toppingsliste[22], toppingsliste[24], toppingsliste[25], toppingsliste[28], toppingsliste[29], toppingsliste[36] }, BasePrisPizza, 1, 0));
-
 
             var saveFile = JsonConvert.SerializeObject(DataBasePizza, Formatting.Indented);
             File.WriteAllText("pizza.json", saveFile);

@@ -111,7 +111,7 @@ namespace EatMore
         //private void AntalTil_Click(object sender, RoutedEventArgs e)
         //{
         //    Button b = (Button)sender;
-        //    if (b != null)
+        //    if (b !=null)
         //    {
 
         //        viewModel.Antal++;
