@@ -213,7 +213,7 @@ namespace EatMore
             toppingsliste.Add(new Top(dalTopIDS++, "Guld", 99999.00)); //40
 
             var saveFileTop = JsonConvert.SerializeObject(toppingsliste, Formatting.Indented);
-            File.WriteAllText("Tops.json", saveFileTop);
+            File.WriteAllText("tops.json", saveFileTop);
 
 
             //Pizza Menu
