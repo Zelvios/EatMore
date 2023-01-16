@@ -7,11 +7,11 @@ using System.Threading.Tasks;
 
 namespace OrdrerWindow
 {
-    public class JoeIsHungry
+    public class JsonFileInfo
     {
         public int NummerID { get; set; }
         public ObservableCollection<OrderTing> filJson { get; set; }
-        public JoeIsHungry(int ID, ObservableCollection<OrderTing> filJson) 
+        public JsonFileInfo(int ID, ObservableCollection<OrderTing> filJson) 
         { 
             this.NummerID = ID;
             this.filJson = filJson;

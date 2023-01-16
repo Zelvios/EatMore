@@ -56,7 +56,7 @@ namespace OrdrerWindow
 
             if (b != null)
             {
-                JoeIsHungry m = (JoeIsHungry)b.DataContext;
+                JsonFileInfo m = (JsonFileInfo)b.DataContext;
                 if (m != null)
                 {
                     vm.fjern(m);

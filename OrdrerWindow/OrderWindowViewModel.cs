@@ -13,10 +13,10 @@ namespace OrdrerWindow
     public class OrderWindowViewModel : INotifyPropertyChanged
     {
         
-        private ObservableCollection<JoeIsHungry> _OrderListe;
+        private ObservableCollection<JsonFileInfo> _OrderListe;
         int NummerID = 1;
 
-        public ObservableCollection<JoeIsHungry> OrderListe
+        public ObservableCollection<JsonFileInfo> OrderListe
         {
             get { return _OrderListe; }
             set
@@ -28,10 +28,10 @@ namespace OrdrerWindow
 
         public OrderWindowViewModel() 
         {
-            _OrderListe = new ObservableCollection<JoeIsHungry>();
+            _OrderListe = new ObservableCollection<JsonFileInfo>();
         }
 
-        public void fjern(JoeIsHungry b)
+        public void fjern(JsonFileInfo b)
         {
             OrderListe.Remove(b);
             
@@ -39,7 +39,7 @@ namespace OrdrerWindow
 
         public void addordere(ObservableCollection<OrderTing> filJson)
         {
-            OrderListe.Add(new JoeIsHungry(NummerID, new ObservableCollection<OrderTing>(filJson)));
+            OrderListe.Add(new JsonFileInfo(NummerID, new ObservableCollection<OrderTing>(filJson)));
             NummerID++;
         }
 
